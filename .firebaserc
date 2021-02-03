@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "providers-fyi-42d78": {
+      "hosting": {
+        "providers-fyi": [
+          "providers-fyi-42d78"
+        ]
+      }
+    }
+  }
+}
