@@ -3,3 +3,28 @@
 <h3><span routerLink="/sign-up">Click here to go to sign Up!</span></h3>
 <h3><span routerLink="/dashboard">Click here to go to Dashboard</span></h3>
 <h3><span routerLink="/forgot-password">Click here to go to Forgot Password!</span></h3>
+
+
+<!-- This is dynamically printing the list of users that are stored in firestore to the home page -->
+<!-- Just because you create a new user doesn't mean it is automatically put into fire store -->
+<!-- It needs to be added aside from authentication -->
+
+<div class ="container">
+
+  <h3>List of users stored in firestore!</h3>
+
+  <ul>
+    <li class="text" *ngFor="let user of users | async">
+
+      Name: {{user["name"]}}
+      <br>
+
+      Email: {{user["email"]}}
+      <br>
+
+      Year: {{user["Class Year"]}}
+      <br>
+
+    </li>
+  </ul>
+</div>
