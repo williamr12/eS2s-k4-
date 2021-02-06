@@ -16,13 +16,13 @@
   <ul>
     <li class="text" *ngFor="let user of users | async">
 
-      Name: {{user["name"]}}
+      displayName: {{user["displayName"]}}
       <br>
 
       Email: {{user["email"]}}
       <br>
 
-      Year: {{user["Class Year"]}}
+      Email Verified?: {{user["emailVerified"]}}
       <br>
 
     </li>
