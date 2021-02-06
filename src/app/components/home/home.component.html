@@ -1,30 +1,36 @@
-<h1>Hi! You're Home!</h1>
-<h3><span routerLink="/sign-in">Click here to go to sign in!</span></h3>
-<h3><span routerLink="/sign-up">Click here to go to sign Up!</span></h3>
-<h3><span routerLink="/dashboard">Click here to go to Dashboard</span></h3>
-<h3><span routerLink="/forgot-password">Click here to go to Forgot Password!</span></h3>
+<div class = "container">
+  <h1>Hi! You're Home!</h1>
+  <h3><span routerLink="/sign-in">Click here to go to sign in!</span></h3>
+  <h3><span routerLink="/sign-up">Click here to go to sign Up!</span></h3>
+  <h3><span routerLink="/dashboard">Click here to go to Dashboard</span></h3>
+  <h3><span routerLink="/forgot-password">Click here to go to Forgot Password!</span></h3>
 
 
-<!-- This is dynamically printing the list of users that are stored in firestore to the home page -->
-<!-- Just because you create a new user doesn't mean it is automatically put into fire store -->
-<!-- It needs to be added aside from authentication -->
+  <!-- This is dynamically printing the list of users that are stored in firestore to the home page -->
+  <!-- Just because you create a new user doesn't mean it is automatically put into fire store -->
+  <!-- It needs to be added aside from authentication -->
 
-<div class ="container">
+  <!-- Show user data when logged in -->
+  <div class= "card" *ngIf="authService.userData as user">
+    <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
+  </div>
 
-  <h3>List of users stored in firestore!</h3>
+    <h3>List of users stored in firestore!</h3>
 
-  <ul>
-    <li class="text" *ngFor="let user of users | async">
+    <ul>
+      <li class="text" *ngFor = "let user of users | async">
 
-      displayName: {{user["displayName"]}}
-      <br>
+        displayName: {{ user["displayName"] }}
+        <br>
 
-      Email: {{user["email"]}}
-      <br>
+        Email: {{ user["email"] }}
+        <br>
 
-      Email Verified?: {{user["emailVerified"]}}
-      <br>
+        Email Verified?: {{ user["emailVerified"] }}
+        <br>
 
-    </li>
-  </ul>
+      </li>
+    </ul>
+
 </div>
+<app-navbar-bottom></app-navbar-bottom>

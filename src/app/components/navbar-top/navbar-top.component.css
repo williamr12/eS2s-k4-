@@ -1,0 +1,9 @@
+.navbar{ background:#0071BC;}
+
+.navbar-brand{
+  color: #f4f4f4;
+  padding: 10px;
+}
+
+.navbar-collapse{ justify-content: flex-end;}
+
