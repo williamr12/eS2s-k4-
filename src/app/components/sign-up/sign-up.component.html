@@ -1,44 +1,42 @@
-<div class = "container">
+<!-- Sign Up Form Component-->
+<body>
 
-<h1>Sign Up!</h1>
-<h3><span routerLink="/sign-in">Click here to go to sign in!</span></h3>
-<h3><span routerLink="/home">Click here to go to Home!</span></h3>
-<h3><span routerLink="/dashboard">Click here to go to Dashboard</span></h3>
-<h3><span routerLink="/forgot-password">Click here to go to Forgot Password!</span></h3>
+  <!-- Sign Up form  -->
+  <form class="form-sign-up">
 
+    <!--  Icon -->
+    <img class="mb-4" src="assets/Untitled-1.png" alt="" width="72" height="72">
 
-<div class="displayTable">
+    <!-- Top Label -->
+    <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
 
-  <div class="displayTableCell">
+    <!-- Email  -->
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" #userEmail required autofocus>
 
-    <div class="authBlock">
-      <h3>Sign Up</h3>
+    <!-- Password  -->
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" #userPwd required>
 
-      <div class="formGroup">
-        <input type="email" class="formControl" placeholder="Email Address" #userEmail required>
-      </div>
+    <!-- Sign Up Button  -->
+    <button type="button" class="btn btn-lg btn-primary btn-block" (click)="authService.SignUp(userEmail.value, userPwd.value)">Sign Up</button>
 
-      <div class="formGroup">
-        <input type="password" class="formControl" placeholder="Password" #userPwd required>
-      </div>
-
-      <div class="formGroup">
-        <input type="button" class="btn btnPrimary" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">
-      </div>
-
-      <div class="formGroup">
-        <span class="or"><span class="orInner">Or</span></span>
-      </div>
-
+    <!-- "or"  -->
+    <div class = "form-group">
+      <span class="or"><span class="orInner">Or</span></span>
     </div>
 
+    <!-- Horizontal Line -->
+    <hr>
+
+    <!-- Already have an Account? Route -->
     <div class="redirectToLogin">
       <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>
     </div>
-  </div>
 
-</div>
+  </form>
 
-</div>
+  <!-- Bottom Navbar Component -->
+  <app-navbar-bottom></app-navbar-bottom>
 
-<app-navbar-bottom></app-navbar-bottom>
+</body>

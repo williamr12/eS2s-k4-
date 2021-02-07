@@ -1,48 +1,49 @@
-<div class = "container">
-  <h1>Sign In!</h1>
-  <h3><span routerLink="/home">Click here to go to Home!</span></h3>
-  <h3><span routerLink="/sign-up">Click here to go to sign Up!</span></h3>
-  <h3><span routerLink="/dashboard">Click here to go to Dashboard</span></h3>
-  <h3><span routerLink="/forgot-password">Click here to go to Forgot Password!</span></h3>
+<!-- Sign In Form Component-->
+<body>
 
-  <body>
+  <!-- Sign In form  -->
+  <form class="form-sign-in">
 
-  <div class="displayTable">
-    <div class="displayTableCell">
+    <!--  Icon -->
+    <img class="mb-4" src="assets/Untitled-1.png" alt="" width="72" height="72">
 
-      <div class="authBlock">
-        <h3>Sign In</h3>
-        <div class="formGroup">
-          <input type="text" class="formControl" placeholder="Username" #userName required>
-        </div>
+    <!-- Top Label -->
+    <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
 
-        <div class="formGroup">
-          <input type="password" class="formControl" placeholder="Password" #userPassword required>
-        </div>
+    <!-- Email  -->
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" #userName required autofocus>
 
-        <!-- Calling SignIn Api from AuthService -->
-        <div class="formGroup">
-          <input type="button" class="btn btnPrimary" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
-        </div>
+    <!-- Password  -->
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" #userPassword required>
 
-        <div class="formGroup">
-          <span class="or"><span class="orInner">Or</span></span>
-        </div>
+    <!-- Sign In Button  -->
+    <button type="button" class="btn btn-lg btn-primary btn-block" (click)="authService.SignIn(userName.value, userPassword.value)">Sign In</button>
 
-        <div class="forgotPassword">
-          <span routerLink="/forgot-password">Forgot Password?</span>
-        </div>
-      </div>
-
-      <div class="redirectToLogin">
-        <span>Don't have an account?<span class="redirect" routerLink="/register-user"> Sign Up</span></span>
-      </div>
-
+    <!-- "or"  -->
+    <div class = "form-group">
+      <span class="or"><span class="orInner">Or</span></span>
     </div>
 
-  </div>
-  </body>
-</div>
+    <!-- Horizontal Line -->
+    <hr>
+
+    <!-- Forgot Password Route -->
+    <div class="forgotPassword">
+      <span routerLink="/forgot-password">Forgot Password?</span>
+    </div>
+
+    <!-- Don't have an account? Route -->
+    <div class="redirectToLogin">
+      <span>Don't have an account?<span class="redirect" routerLink="/sign-up"> Sign Up</span></span>
+    </div>
+
+  </form>
+
+  <!-- Bottom Navbar Component -->
+  <app-navbar-bottom></app-navbar-bottom>
+
+</body>
 
 
-<app-navbar-bottom></app-navbar-bottom>

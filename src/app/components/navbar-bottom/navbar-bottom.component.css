@@ -7,5 +7,10 @@
   padding: 10px;
 }
 
+/* Justify Items to the End*/
 .navbar-collapse{ justify-content: flex-end;}
 
+/* Navbar Link Colors */
+.navbar-light .navbar-nav .nav-link {
+  color: #f4f4f4;
+}

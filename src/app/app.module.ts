@@ -39,6 +39,7 @@ import { NavbarTopComponent } from './components/navbar-top/navbar-top.component
     NavbarBottomComponent,
     NavbarTopComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
