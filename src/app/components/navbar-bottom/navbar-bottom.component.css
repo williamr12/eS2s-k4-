@@ -1,4 +1,6 @@
-.navbar{ background:#0071BC;}
+.bg-dark{
+  background:#2b2d2f !important;
+}
 
 .navbar-brand{
   color: #f4f4f4;
