@@ -1,73 +1,120 @@
 <body>
 
-<app-navbar-top></app-navbar-top>
+  <!-- Nav Bar -->
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
 
-<div class = "container">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Providers.fyi</a>
 
-  <!-- Sidebar navigation -->
+    <ul class="navbar-nav px-3">
 
+      <li class="nav-item text-nowrap">
+
+        <a class="nav-link" (click)="authService.SignOut()">Sign out</a>
+
+      </li>
+
+    </ul>
+
+  </nav>
+
+  <div class="container-fluid">
+
+    <!-- Side Bar  -->
     <div class="row">
 
-      <nav class="col-md-2 d-md-block bg-light sidebar">
+      <!-- Side Bar    -->
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+
         <div class="sidebar-sticky">
+
+          <!-- DashBoard Selection Side Bar -->
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link active">
-                <i class="fas fa-user"></i>User Profile
-              </a>
-            </li>
-            <!-- Calling SignOut() Api from AuthService -->
-            <li class="nav-item">
-              <a class="nav-link" (click)="authService.SignOut()">
-                <i class="fas fa-sign-out-alt"></i>Log out
+              <a class="nav-link active" routerLink="/dashboard">
+                <span data-feather="home"></span>
+                DashBoard <span class="sr-only">(current)</span>
               </a>
             </li>
           </ul>
+
+          <!-- DashBoard Side Bar Test Header -->
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Test Header</span>
+            <a class="d-flex align-items-center text-muted" href="#">
+              <span data-feather="plus-circle"></span>
+            </a>
+          </h6>
+
+          <!-- DashBoard Side Bar Test Item -->
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <a class="nav-link">
+                <span data-feather="file-text"></span>
+                Test Item
+              </a>
+            </li>
+          </ul>
+
         </div>
+
       </nav>
 
-      <!-- Main content -->
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="inner-adjust">
-
-          <div class="pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2"><strong>{{(authService.userData.displayName) ? authService.userData.displayName : 'User'}}</strong></h1>
-          </div>
-          <!-- Show user data when logged in -->
-          <div class="row" *ngIf="authService.userData as user">
-            <div class="col-md-12">
-              <div class="media">
-                <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
-                     alt="{{user.displayName}}">
-                <div class="media-body">
-                  <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
-                  <p>User ID: <strong>{{user.uid}}</strong></p>
-                  <p>Email: <strong>{{user.email}}</strong></p>
-                  <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class ="authBlock">
-          <h3>Update Display Name</h3>
-          <div class="formGroup">
-            <input type="text" class="formControl" placeholder="Display Name" #displayName required>
-          </div>
-          <div class="formGroup">
-            <input type="button" class="btn btnPrimary" value="Update" (click)="authService.UpdateDisplayName(displayName.value)">
-          </div>
-        </div>
-
-      </main>
-
     </div>
+
+    <!-- Main content -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+      <div class="inner-adjust">
+
+        <div class="pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2"><strong>{{(authService.userData.displayName) ? authService.userData.displayName : 'User'}}</strong></h1>
+        </div>
+
+        <!-- Show user data when logged in -->
+        <div class="row" *ngIf="authService.userData as user">
+
+          <div class="col-md-12">
+
+            <div class="media">
+
+              <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
+                   alt="{{user.displayName}}">
+
+              <!-- User Info -->
+              <div class="media-body">
+                <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
+                <p>User ID: <strong>{{user.uid}}</strong></p>
+                <p>Email: <strong>{{user.email}}</strong></p>
+                <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Update Display Name Form -->
+        <form class="form-Update-Display-Name">
+
+          <!-- Top Label -->
+          <h1 class="h3 mb-3 font-weight-normal">Update Display Name</h1>
+
+          <!-- User Instruction-->
+          <p class="text-center">Please enter a new display name!</p>
+
+          <!-- Email Address for Password Reset  -->
+          <input type="displayName" id="changeDisplayName" class="form-control" placeholder="Display Name" #displayName required>
+
+          <!-- Password Reset Button  -->
+          <button type="button" class="btn btn-lg btn-primary btn-block" (click)="authService.UpdateDisplayName(displayName.value)">Change Display Name</button>
+
+        </form>
+
+      </div>
+
+    </main>
+
   </div>
 
-
-
-
 </body>
-

@@ -1,30 +1,36 @@
-<div class = "container">
+<body>
 
-  <!-- This is dynamically printing the list of users that are stored in firestore to the home page -->
-  <!-- Just because you create a new user doesn't mean it is automatically put into fire store -->
-  <!-- It needs to be added aside from authentication -->
+  <div class = "home">
 
-  <!-- Show user data when logged in -->
-  <div class= "form-group" *ngIf="authService.userData as user">
-    <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
+    <!-- This is dynamically printing the list of users that are stored in firestore to the home page -->
+    <!-- Just because you create a new user doesn't mean it is automatically put into fire store -->
+    <!-- It needs to be added aside from authentication -->
+
+    <!-- Show user data when logged in -->
+    <div class= "form-group" *ngIf="authService.userData as user">
+      <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
+    </div>
+
+      <h3>List of users stored in firestore!</h3>
+
+      <ul>
+        <li class="text" *ngFor = "let user of users | async">
+
+          displayName: {{ user["displayName"] }}
+          <br>
+
+          Email: {{ user["email"] }}
+          <br>
+
+          Email Verified?: {{ user["emailVerified"] }}
+          <br>
+
+        </li>
+
+      </ul>
+
   </div>
 
-    <h3>List of users stored in firestore!</h3>
+  <app-navbar-bottom></app-navbar-bottom>
 
-    <ul>
-      <li class="text" *ngFor = "let user of users | async">
-
-        displayName: {{ user["displayName"] }}
-        <br>
-
-        Email: {{ user["email"] }}
-        <br>
-
-        Email Verified?: {{ user["emailVerified"] }}
-        <br>
-
-      </li>
-    </ul>
-
-</div>
-<app-navbar-bottom></app-navbar-bottom>
+</body>
