@@ -1,15 +1,11 @@
+<body>
+
 <app-navbar-top></app-navbar-top>
 
 <div class = "container">
-  <h1>Dashboard</h1>
-  <h3><span routerLink="/sign-in">Click here to go to sign in!</span></h3>
-  <h3><span routerLink="/sign-up">Click here to go to sign Up!</span></h3>
-  <h3><span routerLink="/home">Click here to go to Home</span></h3>
-  <h3><span routerLink="/forgot-password">Click here to go to Forgot Password!</span></h3>
-
 
   <!-- Sidebar navigation -->
-  <div class="container-fluid">
+
     <div class="row">
 
       <nav class="col-md-2 d-md-block bg-light sidebar">
@@ -56,17 +52,22 @@
         </div>
 
         <div class ="authBlock">
-        <h3>Update Display Name</h3>
-        <div class="formGroup">
-          <input type="text" class="formControl" placeholder="Display Name" #displayName required>
+          <h3>Update Display Name</h3>
+          <div class="formGroup">
+            <input type="text" class="formControl" placeholder="Display Name" #displayName required>
+          </div>
+          <div class="formGroup">
+            <input type="button" class="btn btnPrimary" value="Update" (click)="authService.UpdateDisplayName(displayName.value)">
+          </div>
         </div>
-        <div class="formGroup">
-          <input type="button" class="btn btnPrimary" value="Update" (click)="authService.UpdateDisplayName(displayName.value)">
-        </div>
-    </div>
 
       </main>
 
     </div>
   </div>
-</div>
+
+
+
+
+</body>
+
