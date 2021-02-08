@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { GoogleMapsModule} from '@angular/google-maps';
 
 // App Routing
 import {RouterModule} from '@angular/router';
@@ -26,6 +27,7 @@ import { AuthService } from './shared/services/auth.service';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
 import { NavbarTopComponent } from './components/navbar-top/navbar-top.component';
+import { ProviderMapComponent } from './components/provider-map/provider-map.component';
 
 @NgModule({
   declarations: [
@@ -38,16 +40,18 @@ import { NavbarTopComponent } from './components/navbar-top/navbar-top.component
     VerifyEmailComponent,
     NavbarBottomComponent,
     NavbarTopComponent,
+    ProviderMapComponent,
   ],
 
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule,
-    AngularFirestoreModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        RouterModule,
+        AngularFirestoreModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireAuthModule,
+        GoogleMapsModule
+    ],
   providers: [AuthService],
   bootstrap: [AppComponent]
 })
