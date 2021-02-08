@@ -60,3 +60,8 @@ body {
   background-color: #2b2d2f;
 }
 
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+

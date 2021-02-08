@@ -112,4 +112,8 @@ NavBar
   color: #f4f4f4;
 }
 
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
 
