@@ -51,7 +51,6 @@ NavBar
   padding-top: .5rem;
   overflow-x: hidden;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-  background-color: #f4f4f4;
 }
 
 .sidebar .nav-link {
@@ -62,6 +61,7 @@ NavBar
 .sidebar .nav-link .feather {
   margin-right: 4px;
   color: #f4f4f4;
+
 }
 
 .sidebar .nav-link.active {
