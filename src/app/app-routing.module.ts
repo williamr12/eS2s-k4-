@@ -1,3 +1,6 @@
+// Handles page routing
+
+// Imports
 import { NgModule } from '@angular/core';
 
 // Importing Router

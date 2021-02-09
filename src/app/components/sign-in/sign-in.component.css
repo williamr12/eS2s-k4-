@@ -20,6 +20,7 @@ body {
   background-color: #f5f5f5;
 }
 
+/* Form */
 .form-sign-in {
   width: 100%;
   max-width: 330px;
@@ -60,8 +61,4 @@ body {
   background-color: #2b2d2f;
 }
 
-.btn:focus, .btn:active {
-  outline: none !important;
-  box-shadow: none !important;
-}
 

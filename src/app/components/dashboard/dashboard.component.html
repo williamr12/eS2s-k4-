@@ -1,3 +1,4 @@
+<!-- Dashboard Component -->
 <body>
 
   <!-- Nav Bar -->
@@ -17,14 +18,16 @@
 
   </nav>
 
+  <!-- Container for Sidebar and Main Content  -->
   <div class="container-fluid">
 
     <!-- Side Bar  -->
     <div class="row">
 
-      <!-- Side Bar    -->
+      <!-- Side Bar -->
       <nav class="col-md-2 d-none d-md-block bg-light sidebar">
 
+        <!-- Side Bar -->
         <div class="sidebar-sticky">
 
           <!-- DashBoard Selection Side Bar -->
@@ -66,6 +69,7 @@
 
       <div class="inner-adjust">
 
+        <!-- Top Sidebar Selection -->
         <div class="pt-3 pb-2 mb-3 border-bottom">
           <h1 class="h2"><strong>{{(authService.userData.displayName) ? authService.userData.displayName : 'User'}}</strong></h1>
         </div>
@@ -77,6 +81,7 @@
 
             <div class="media">
 
+              <!-- Profile Photo -->
               <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
                    alt="{{user.displayName}}">
 
