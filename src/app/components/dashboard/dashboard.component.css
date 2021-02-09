@@ -78,6 +78,7 @@ NavBar
   text-transform: uppercase;
 }
 
+/*Form*/
 .form-Update-Display-Name {
   width: 100%;
   max-width: 330px;
@@ -111,5 +112,4 @@ NavBar
   background-color: #2b2d2f;
   color: #f4f4f4;
 }
-
 

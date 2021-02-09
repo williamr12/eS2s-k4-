@@ -18,6 +18,7 @@ import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.
 import { NavbarTopComponent } from './components/navbar-top/navbar-top.component';
 import { ProviderMapComponent } from './components/provider-map/provider-map.component';
 
+
 // Firebase Imports
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule} from '@angular/fire/auth';

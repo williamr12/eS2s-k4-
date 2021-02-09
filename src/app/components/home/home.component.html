@@ -1,3 +1,4 @@
+<!-- Home Component -->
 <body>
 
   <div class = "home">
@@ -11,17 +12,24 @@
       <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
     </div>
 
+      <!-- List Header -->
       <h3>List of users stored in firestore!</h3>
 
+      <!-- List -->
       <ul>
+
+        <!-- List For Loop -->
         <li class="text" *ngFor = "let user of users | async">
 
+          <!-- Name -->
           displayName: {{ user["displayName"] }}
           <br>
 
+          <!-- Email -->
           Email: {{ user["email"] }}
           <br>
 
+          <!-- Email Verification Status -->
           Email Verified?: {{ user["emailVerified"] }}
           <br>
 
@@ -31,6 +39,7 @@
 
   </div>
 
+  <!-- Bottom Navbar Component -->
   <app-navbar-bottom></app-navbar-bottom>
 
 </body>

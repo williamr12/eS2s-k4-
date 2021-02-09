@@ -1,3 +1,6 @@
+// AuthService is handling authentication and storing our data in firestore as of now
+
+// Imports
 import { Injectable, NgZone } from '@angular/core';
 
 // Import User

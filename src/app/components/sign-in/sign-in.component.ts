@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-// IMport AuthService
+// Import AuthService
 import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
