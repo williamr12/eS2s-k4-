@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
+import { AuthService } from '../../shared/services/auth.service';
+import {Observable} from 'rxjs';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar-bottom',
@@ -7,7 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarBottomComponent implements OnInit {
 
-  constructor() { }
+  users: Observable<any[]>;
+
+  constructor(firestore: AngularFirestore,
+              public authService: AuthService,
+              public router: Router,
+              public ngZone: NgZone,
+  ) {
+    this.users = firestore.collection('/users').valueChanges();
+  }
 
   ngOnInit(): void {
   }
