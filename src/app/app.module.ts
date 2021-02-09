@@ -26,6 +26,7 @@ import { environment } from '../environments/environment';
 
 // Auth service
 import { AuthService } from './shared/services/auth.service';
+import { ProviderMapComponent } from './components/provider-map/provider-map.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AuthService } from './shared/services/auth.service';
     VerifyEmailComponent,
     NavbarBottomComponent,
     NavbarTopComponent,
+    ProviderMapComponent,
   ],
 
   imports: [
