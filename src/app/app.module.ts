@@ -16,6 +16,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
 import { NavbarTopComponent } from './components/navbar-top/navbar-top.component';
+import { ProviderMapComponent } from './components/provider-map/provider-map.component';
 
 // Firebase Imports
 import { AngularFireModule } from '@angular/fire';
@@ -27,7 +28,6 @@ import { environment } from '../environments/environment';
 
 // Auth service
 import { AuthService } from './shared/services/auth.service';
-import { ProviderMapComponent } from './components/provider-map/provider-map.component';
 
 @NgModule({
   declarations: [
