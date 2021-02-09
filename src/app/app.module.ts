@@ -13,6 +13,9 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
+import { NavbarTopComponent } from './components/navbar-top/navbar-top.component';
 
 // Firebase Imports
 import { AngularFireModule } from '@angular/fire';
@@ -24,9 +27,6 @@ import { environment } from '../environments/environment';
 
 // Auth service
 import { AuthService } from './shared/services/auth.service';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
-import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
-import { NavbarTopComponent } from './components/navbar-top/navbar-top.component';
 import { ProviderMapComponent } from './components/provider-map/provider-map.component';
 
 @NgModule({
