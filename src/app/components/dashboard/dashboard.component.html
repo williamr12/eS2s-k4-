@@ -1,22 +1,23 @@
 <!-- Dashboard Component -->
 <body>
 
-  <!-- Nav Bar -->
-  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+<!-- OLD NAVBAR -->
+<!--  &lt;!&ndash; Nav Bar &ndash;&gt;-->
+<!--  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">-->
 
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Providers.fyi</a>
+<!--    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Providers.fyi</a>-->
 
-    <ul class="navbar-nav px-3">
+<!--    <ul class="navbar-nav px-3">-->
 
-      <li class="nav-item text-nowrap">
+<!--      <li class="nav-item text-nowrap">-->
 
-        <a class="nav-link" (click)="authService.SignOut()">Sign out</a>
+<!--        <a class="nav-link" (click)="authService.SignOut()">Sign out</a>-->
 
-      </li>
+<!--      </li>-->
 
-    </ul>
+<!--    </ul>-->
 
-  </nav>
+<!--  </nav>-->
 
   <!-- Container for Sidebar and Main Content  -->
   <div class="container-fluid">
@@ -39,6 +40,8 @@
               </a>
             </li>
           </ul>
+
+          <hr width = "95%">
 
           <!-- DashBoard Side Bar Test Header -->
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -131,5 +134,8 @@
     </main>
 
   </div>
+
+  <!-- Bottom Navbar Component -->
+  <app-navbar-bottom></app-navbar-bottom>
 
 </body>

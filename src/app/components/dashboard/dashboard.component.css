@@ -1,32 +1,11 @@
-body {
-  font-size: .875rem;
-}
+/*body {*/
+/*  font-size: .875rem;*/
+/*}*/
 
 .feather {
   width: 16px;
   height: 16px;
   vertical-align: text-bottom;
-}
-
-/*
-NavBar
-*/
-.navbar-brand{
-  color: #f4f4f4;
-  padding: 10px;
-  font-size: 1rem;
-}
-
-/* Justify Items to the End*/
-.navbar-collapse{ justify-content: flex-end;}
-
-/* Navbar Link Colors */
-.navbar-dark .navbar-nav .nav-link {
-  color: #f4f4f4;
-}
-
-.bg-dark{
-  background-color: #2b2d2f !important;
 }
 
 /*
@@ -46,7 +25,7 @@ NavBar
 .sidebar-sticky {
   position: -webkit-sticky;
   position: sticky;
-  top: 48px; /* Height of navbar */
+  top: 15px; /* Height of navbar */
   height: calc(100vh - 48px);
   padding-top: .5rem;
   overflow-x: hidden;
