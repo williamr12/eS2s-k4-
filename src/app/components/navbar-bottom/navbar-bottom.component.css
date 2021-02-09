@@ -16,3 +16,8 @@
 .navbar-light .navbar-nav .nav-link {
   color: #f4f4f4;
 }
+
+/* App Name Hover */
+.navbar-brand:hover{
+  color: #0071BC;
+}
