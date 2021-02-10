@@ -2,7 +2,7 @@
 <body>
 
   <!-- Sign Up form  -->
-  <form class="form-sign-up">
+  <form class="form-sign-up shadow p-3 mb-5 bg-white rounded">
 
     <!--  Icon -->
     <img class="mb-4" src="assets/Untitled-1.png" alt="" width="72" height="72">
@@ -10,16 +10,20 @@
     <!-- Top Label -->
     <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
 
+    <!-- Display Name  -->
+    <label for="inputDisplayName" class="sr-only">Display Name</label>
+    <input type="displayName" id="inputDisplayName" class="form-control" placeholder="Display Name" #name required autofocus>
+
     <!-- Email  -->
     <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" #userEmail required autofocus>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" #userEmail required>
 
     <!-- Password  -->
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" #userPwd required>
 
     <!-- Sign Up Button  -->
-    <button type="button" class="btn btn-lg btn-primary btn-block shadow-none" (click)="authService.SignUp(userEmail.value, userPwd.value)">Sign Up</button>
+    <button type="button" class="btn btn-lg btn-primary btn-block shadow-none" (click)="authService.SignUp(userEmail.value, userPwd.value, name.value)">Sign Up</button>
 
     <!-- "or"  -->
     <div class = "form-group">

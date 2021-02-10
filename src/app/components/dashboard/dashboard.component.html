@@ -1,24 +1,6 @@
 <!-- Dashboard Component -->
 <body>
 
-<!-- OLD NAVBAR -->
-<!--  &lt;!&ndash; Nav Bar &ndash;&gt;-->
-<!--  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">-->
-
-<!--    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Providers.fyi</a>-->
-
-<!--    <ul class="navbar-nav px-3">-->
-
-<!--      <li class="nav-item text-nowrap">-->
-
-<!--        <a class="nav-link" (click)="authService.SignOut()">Sign out</a>-->
-
-<!--      </li>-->
-
-<!--    </ul>-->
-
-<!--  </nav>-->
-
   <!-- Container for Sidebar and Main Content  -->
   <div class="container-fluid">
 
@@ -41,6 +23,7 @@
             </li>
           </ul>
 
+          <!-- Horizontal Line -->
           <hr width = "95%">
 
           <!-- DashBoard Side Bar Test Header -->
@@ -125,7 +108,7 @@
           <input type="displayName" id="changeDisplayName" class="form-control" placeholder="Display Name" #displayName required>
 
           <!-- Password Reset Button  -->
-          <button type="button" class="btn btn-lg btn-primary btn-block shadow-none" (click)="authService.UpdateDisplayName(displayName.value)">Change Display Name</button>
+          <button type="button" class="btn btn-lg btn-primary btn-block shadow-none" (click)="authService.updateDisplayName(displayName.value)">Change Display Name</button>
 
         </form>
 

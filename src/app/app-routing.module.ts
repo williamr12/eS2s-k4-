@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent},
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent},
-  { path: 'verify-email-address', component: VerifyEmailComponent },
+  { path: 'verify-email-address', component: VerifyEmailComponent},
   { path: 'provider-map', component: ProviderMapComponent, canActivate: [AuthGuard] }
 
 ];

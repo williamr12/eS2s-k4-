@@ -3,5 +3,13 @@ html,body{
   font-family: proxima-nova, "Helvetica Neue", sans-serif;
   font-weight: 900;
   font-style: normal;
+  /*font-size: .875rem;*/
 }
 
+/*Redirect Hover*/
+.redirectToLogin .redirect:hover{
+  color: #0071BC;
+}
+.forgotPassword:hover{
+  color: #0071BC;
+}

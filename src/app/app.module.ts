@@ -15,9 +15,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
-import { NavbarTopComponent } from './components/navbar-top/navbar-top.component';
 import { ProviderMapComponent } from './components/provider-map/provider-map.component';
-
 
 // Firebase Imports
 import { AngularFireModule } from '@angular/fire';
@@ -40,8 +38,7 @@ import { AuthService } from './shared/services/auth.service';
     ForgotPasswordComponent,
     VerifyEmailComponent,
     NavbarBottomComponent,
-    NavbarTopComponent,
-    ProviderMapComponent,
+    ProviderMapComponent
   ],
 
     imports: [
