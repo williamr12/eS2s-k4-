@@ -7,36 +7,38 @@
     <!-- Just because you create a new user doesn't mean it is automatically put into fire store -->
     <!-- It needs to be added aside from authentication -->
 
-    <!-- Show user data when logged in -->
-    <div class= "form-group" *ngIf="authService.userData as user">
-      <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
+    <div class = "home-items shadow p-3 mb-5 bg-white rounded">
+      <!-- Show user data when logged in -->
+      <div class= "form-group " *ngIf="authService.userData as user">
+        <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
+      </div>
+
+        <!-- List Header -->
+        <h3>List of users stored in firestore!</h3>
+
+        <!-- List -->
+        <ul>
+
+          <!-- List For Loop -->
+          <li class="text" *ngFor = "let user of users | async">
+
+            <!-- Name -->
+            displayName: {{ user["displayName"] }}
+            <br>
+
+            <!-- Email -->
+            Email: {{ user["email"] }}
+            <br>
+
+            <!-- Email Verification Status -->
+            Email Verified?: {{ user["emailVerified"] }}
+            <br>
+
+          </li>
+
+        </ul>
+
     </div>
-
-      <!-- List Header -->
-      <h3>List of users stored in firestore!</h3>
-
-      <!-- List -->
-      <ul>
-
-        <!-- List For Loop -->
-        <li class="text" *ngFor = "let user of users | async">
-
-          <!-- Name -->
-          displayName: {{ user["displayName"] }}
-          <br>
-
-          <!-- Email -->
-          Email: {{ user["email"] }}
-          <br>
-
-          <!-- Email Verification Status -->
-          Email Verified?: {{ user["emailVerified"] }}
-          <br>
-
-        </li>
-
-      </ul>
-
   </div>
 
   <!-- Bottom Navbar Component -->

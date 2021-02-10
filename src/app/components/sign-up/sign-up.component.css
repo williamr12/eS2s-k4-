@@ -6,14 +6,8 @@ html{
 body {
   height: 100%;
   min-height: 100vh;
-  display: -ms-flexbox;
-  display: -webkit-box;
   display: flex;
-  -ms-flex-align: center;
-  -ms-flex-pack: center;
-  -webkit-box-align: center;
   align-items: center;
-  -webkit-box-pack: center;
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
@@ -33,10 +27,16 @@ body {
   box-sizing: border-box;
   height: auto;
   padding: 10px;
-  font-size: 16px;
+  /*font-size: 16px;*/
+  font-size: 1rem;
 }
 .form-sign-up .form-control:focus {
   z-index: 2;
+}
+.form-sign-up input[type="displayName"] {
+  margin-bottom: 10px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 .form-sign-up input[type="email"] {
   margin-bottom: -1px;
@@ -61,11 +61,13 @@ body {
   background-color: #2b2d2f;
 }
 
-
 .btn:focus, .btn:active {
   outline: none !important;
   box-shadow: none !important;
 }
 
+hr{
+  margin-top: -10px;
+}
 
 

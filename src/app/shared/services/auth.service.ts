@@ -31,6 +31,7 @@ export class AuthService {
     /* Saving user data in localstorage when
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe(user => {
+
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
@@ -39,6 +40,7 @@ export class AuthService {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
       }
+
     });
   }
 
@@ -47,9 +49,11 @@ export class AuthService {
   SignIn(email, password) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
+
         this.ngZone.run(() => {
           this.router.navigate(['dashboard']);
         });
+
         this.SetUserData(result.user);
       }).catch((error) => {
         window.alert(error.message);
@@ -58,13 +62,19 @@ export class AuthService {
 
   // Sign up with email/password
   // tslint:disable-next-line:typedef
-  SignUp(email, password) {
+  SignUp(email, password, displayName) {
+
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
+
         /* Call the SendVerificationMail() function when new user sign
         up and returns promise */
         this.SendVerificationMail();
         this.SetUserData(result.user);
+
+        // Updating Display Name with Input
+        this.updateDisplayName(displayName);
+
       }).catch((error) => {
         window.alert(error.message);
       });
@@ -129,7 +139,8 @@ export class AuthService {
     });
   }
 
-  UpdateDisplayName(name): void {
+  // Updates Display Name in Firestore
+  updateDisplayName(name): void {
 
     const user = firebase.auth().currentUser;
 
@@ -152,5 +163,4 @@ export class AuthService {
       this.router.navigate(['sign-in']);
     });
   }
-
 }
