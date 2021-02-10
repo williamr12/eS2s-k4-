@@ -11,13 +11,21 @@ export class ProviderMapComponent implements OnInit {
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
   @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow;
 
-  zoom = 18;
+  zoom = 12;
   center: google.maps.LatLngLiteral;
   options: google.maps.MapOptions = {
     zoomControl: true,
     scrollwheel: false,
     disableDoubleClickZoom: true,
-    mapTypeId: 'hybrid'
+    mapTypeId: 'roadmap',
+    mapTypeControl: false,
+    styles: [{
+      featureType: 'poi',
+      elementType: 'labels',
+      stylers: [{
+        visibility: 'off'
+      }]
+    }]
   };
   markers = [];
   infoContent = '';
@@ -26,23 +34,44 @@ export class ProviderMapComponent implements OnInit {
   ngOnInit() {
     navigator.geolocation.getCurrentPosition(x => {
       this.center = {
-        lat: x.coords.latitude,
-        lng: x.coords.longitude
+        lat: 44.956833,
+        lng: -93.181056
       };
       this.markers.push({
         position: {
-          lat: x.coords.latitude,
-          lng: x.coords.longitude
+          lat: 44.953333,
+          lng: -93.150056
         },
         label: {
           color: 'blue',
-          text: 'Marker Label'
+          text: 'Central Medical Clinic'
         },
         title: 'Marker Title',
-        info: 'Marker info',
-        options: {
-          animation: google.maps.Animation.BOUNCE
-        }
+        info: 'Marker info'
+      });
+      this.markers.push({
+        position: {
+          lat: 44.972733,
+          lng: -93.261856
+        },
+        label: {
+          color: 'blue',
+          text: 'Hennepin County Medical Center'
+        },
+        title: 'Marker Title',
+        info: 'Marker info'
+      });
+      this.markers.push({
+        position: {
+          lat: 44.977633,
+          lng: -93.062056
+        },
+        label: {
+          color: 'blue',
+          text: 'Dr. Paul T. Chlebeck, MD'
+        },
+        title: 'Marker Title',
+        info: 'Marker info'
       });
     });
   }
@@ -56,18 +85,15 @@ export class ProviderMapComponent implements OnInit {
   addMarker() {
     this.markers.push({
       position: {
-        lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
-        lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10
+        lat: this.map.getCenter().lat(),
+        lng: this.map.getCenter().lng()
       },
       label: {
         color: 'red',
         text: 'Marker label ' + (this.markers.length + 1)
       },
       title: 'Marker title ' + (this.markers.length + 1),
-      info: 'Marker info ' + (this.markers.length + 1),
-      options: {
-        animation: google.maps.Animation.BOUNCE
-      }
+      info: 'Marker info ' + (this.markers.length + 1)
     });
   }
 }
