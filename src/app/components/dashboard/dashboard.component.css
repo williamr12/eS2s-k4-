@@ -78,8 +78,6 @@
 
 .form-Update-Display-Name input[type="displayName"] {
   margin-bottom: 10px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
 }
 
 .form-Update-Display-Name{
