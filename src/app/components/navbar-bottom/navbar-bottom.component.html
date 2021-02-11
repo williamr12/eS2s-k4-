@@ -13,14 +13,14 @@
     <!-- Navbar Links -->
     <div class="navbar-nav">
 
-      <!-- Always Shown      -->
+      <!-- Always Shown -->
       <a class="nav-item nav-link active" href="home">Home<span class="sr-only">(current)</span></a>
 
       <!-- Only Shows if not signed in -->
       <a class="nav-item nav-link" *ngIf="!authService.userData as user" href="sign-up">Sign Up</a>
       <a class="nav-item nav-link" *ngIf="!authService.userData as user" href="sign-in">Sign In</a>
 
-      <!-- Only Shows if igned in -->
+      <!-- Only Shows if signed in -->
       <a class="nav-item nav-link" *ngIf="authService.userData as user" href="dashboard">Dashboard</a>
       <a class="nav-link"*ngIf="authService.userData as user" (click)="authService.SignOut()">Sign out</a>
 
