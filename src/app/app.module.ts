@@ -27,6 +27,7 @@ import { environment } from '../environments/environment';
 
 // Auth service
 import { AuthService } from './shared/services/auth.service';
+import { MessageBoardComponent } from './compenents/message-board/message-board.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AuthService } from './shared/services/auth.service';
     ForgotPasswordComponent,
     VerifyEmailComponent,
     NavbarBottomComponent,
-    ProviderMapComponent
+    ProviderMapComponent,
+    MessageBoardComponent
   ],
 
     imports: [
