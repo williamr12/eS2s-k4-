@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
 })
 
 export class AuthService {
+
   userData: any; // Save logged in user data
 
   constructor(
@@ -137,6 +138,22 @@ export class AuthService {
     return userRef.set(userData, {
       merge: true
     });
+  }
+
+
+  // Saving message to firestore
+  // tslint:disable-next-line:typedef
+  saveMessage(userMessage, userNickname) {
+    const messageRef: AngularFirestoreDocument<any> = this.afs.doc(`messages/${this.afs.createId()}`);
+    const messageData = {
+      date: new Date(),
+      message: userMessage,
+      nickname: userNickname,
+    };
+    return messageRef.set(messageData, {
+      merge: true
+    });
+
   }
 
   // Updates Display Name in Firestore

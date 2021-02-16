@@ -10,7 +10,6 @@ import { AuthService } from '../../shared/services/auth.service';
 // Import Router
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
