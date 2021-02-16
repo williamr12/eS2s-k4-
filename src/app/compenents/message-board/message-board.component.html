@@ -1,0 +1,62 @@
+<body>
+<!-- partial:index.partial.html -->
+<main class="container">
+
+  <h1>Message Board</h1>
+
+  <hr>
+
+  <div class="message-board">
+
+    <div id="load-data">
+      <!--      <p>Loading...</p>-->
+      <!-- List -->
+      <ul class="text" *ngFor = "let message of messages | async">
+
+        <!-- List For Loop -->
+        <li class = "messages shadow p-3 mb-5 bg-white rounded">
+
+<!--          &lt;!&ndash; Date &ndash;&gt;-->
+<!--          Date: {{ message["date"] }}-->
+<!--          <br>-->
+
+          <!-- Nickname -->
+          From: {{ message["displayName"] }}
+          <br>
+
+          <!-- Message -->
+          {{ message["message"] }}
+
+          <br>
+
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+  <!-- Message Reply  -->
+  <form class="form-message shadow p-3 mb-5 bg-white rounded">
+
+    <!--  Icon -->
+    <img class="mb-4" src="assets/Untitled-1.png" alt="" width="72" height="72">
+
+    <!-- Top Label -->
+    <h1 class="h3 mb-3 font-weight-normal">MESSAGE</h1>
+
+    <!-- Email  -->
+    <label for="inputUserMessage" class="sr-only">Email address</label>
+    <textarea type="userMessage" id="inputUserMessage" class="form-control" placeholder="Type message here.." #message required></textarea>
+
+    <!-- Send Message Button  -->
+    <button type="button" class="btn btn-lg btn-primary btn-block shadow-none" (click)="authService.saveMessage(message.value)">POST</button>
+
+  </form>
+
+  <!-- Bottom Navbar Component -->
+  <app-navbar-bottom></app-navbar-bottom>
+
+</main>
+
+</body>
+

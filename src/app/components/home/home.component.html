@@ -17,10 +17,10 @@
         <h3>List of users stored in firestore!</h3>
 
         <!-- List -->
-        <ul>
+        <ul class="text" *ngFor = "let user of users | async">
 
           <!-- List For Loop -->
-          <li class="text" *ngFor = "let user of users | async">
+          <li>
 
             <!-- Name -->
             displayName: {{ user["displayName"] }}
