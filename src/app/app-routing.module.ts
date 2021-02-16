@@ -14,7 +14,7 @@ import { DashboardComponent} from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 import {VerifyEmailComponent} from './components/verify-email/verify-email.component';
 import {ProviderMapComponent} from './components/provider-map/provider-map.component';
-import { MessageBoardComponent } from './compenents/message-board/message-board.component';
+import { MessageBoardComponent } from './components/message-board/message-board.component';
 
 // Importing the AuthGuard
 import { AuthGuard } from './shared/guard/auth.guard';
