@@ -28,6 +28,7 @@ import { environment } from '../environments/environment';
 
 // Auth service
 import { AuthService } from './shared/services/auth.service';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -43,15 +44,16 @@ import { AuthService } from './shared/services/auth.service';
     MessageBoardComponent
   ],
 
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        RouterModule,
-        AngularFirestoreModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFireAuthModule,
-        GoogleMapsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    RouterModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    GoogleMapsModule,
+    FormsModule
+  ],
   providers: [AuthService],
   bootstrap: [AppComponent]
 })

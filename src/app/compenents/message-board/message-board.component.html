@@ -21,7 +21,7 @@
 <!--          <br>-->
 
           <!-- Nickname -->
-          From: {{ message["nickname"] }}
+          From: {{ message["displayName"] }}
           <br>
 
           <!-- Message -->
@@ -44,16 +44,12 @@
     <!-- Top Label -->
     <h1 class="h3 mb-3 font-weight-normal">MESSAGE</h1>
 
-    <!-- Nick Name  -->
-    <label for="inputNickName" class="sr-only">Nickname</label>
-    <input type="nickName" id="inputNickName" class="form-control" placeholder="nickname" #nickname required autofocus>
-
     <!-- Email  -->
     <label for="inputUserMessage" class="sr-only">Email address</label>
     <textarea type="userMessage" id="inputUserMessage" class="form-control" placeholder="Type message here.." #message required></textarea>
 
     <!-- Send Message Button  -->
-    <button type="button" class="btn btn-lg btn-primary btn-block shadow-none" (click)="authService.saveMessage(message.value , nickname.value)">POST</button>
+    <button type="button" class="btn btn-lg btn-primary btn-block shadow-none" (click)="authService.saveMessage(message.value)">POST</button>
 
   </form>
 

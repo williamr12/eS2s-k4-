@@ -143,12 +143,12 @@ export class AuthService {
 
   // Saving message to firestore
   // tslint:disable-next-line:typedef
-  saveMessage(userMessage, userNickname) {
+  saveMessage(userMessage) {
     const messageRef: AngularFirestoreDocument<any> = this.afs.doc(`messages/${this.afs.createId()}`);
     const messageData = {
       date: new Date(),
       message: userMessage,
-      nickname: userNickname,
+      displayName: this.userData.displayName,
     };
     return messageRef.set(messageData, {
       merge: true
