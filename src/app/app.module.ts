@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { GoogleMapsModule} from '@angular/google-maps';
 
 // App Routing
 import {RouterModule} from '@angular/router';
@@ -18,6 +17,10 @@ import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.
 import { ProviderMapComponent } from './components/provider-map/provider-map.component';
 import { MessageBoardComponent } from './components/message-board/message-board.component';
 
+// Forms
+import {FormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 // Firebase Imports
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule} from '@angular/fire/auth';
@@ -28,7 +31,9 @@ import { environment } from '../environments/environment';
 
 // Auth service
 import { AuthService } from './shared/services/auth.service';
-import {FormsModule} from "@angular/forms";
+
+// Google Maps
+import { GoogleMapsModule} from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -52,9 +57,11 @@ import {FormsModule} from "@angular/forms";
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     GoogleMapsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

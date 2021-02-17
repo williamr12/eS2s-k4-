@@ -1,62 +1,74 @@
 <body>
-<!-- partial:index.partial.html -->
-<main class="container">
 
-  <h1>Message Board</h1>
+  <!-- Page Container-->
+  <div class="container">
 
-  <hr>
+    <!-- Message Board Header  -->
+    <h1>Message Board</h1>
 
-  <div class="message-board">
+    <!-- Horizontal Rule  -->
+    <hr>
 
-    <div id="load-data">
-      <!--      <p>Loading...</p>-->
-      <!-- List -->
-      <ul class="text" *ngFor = "let message of messages | async">
 
-        <!-- List For Loop -->
-        <li class = "messages shadow p-3 mb-5 bg-white rounded">
+    <!-- Message Board Div  -->
+    <div class = "message-board">
 
-<!--          &lt;!&ndash; Date &ndash;&gt;-->
-<!--          Date: {{ message["date"] }}-->
-<!--          <br>-->
+      <!-- Message Board Div For Scroll Function  -->
+      <div #messageBoard style="overflow: scroll; height: 600px;">
 
-          <!-- Nickname -->
-          From: {{ message["displayName"] }}
-          <br>
+        <!-- Display Message  -->
+        <div class="display-messages">
+          <!--      <p>Loading...</p>-->
+          <!-- List -->
+          <ul class="text" *ngFor = "let message of messages | async">
 
-          <!-- Message -->
-          {{ message["message"] }}
+            <!-- List For Loop -->
+            <li class = "messages shadow p-3 mb-5 bg-white rounded">
 
-          <br>
+              <!-- Date -->
+              {{ message.date.toDate() |  date:' EEE MM/dd - h:mm a' }}
+              <br>
 
-        </li>
+              <!-- Nickname -->
+              From: {{ message["displayName"] }}
+              <br>
 
-      </ul>
+              <!-- Message -->
+              {{ message["message"] }}
+              <br>
+
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
     </div>
+
+    <!-- Message Reply  -->
+    <form class="form-message shadow p-3 mb-5 bg-white rounded">
+
+      <!--  Icon -->
+      <img class="mb-4" src="../../../assets/Untitled-1.png" alt="" width="72" height="72">
+
+      <!-- Top Label -->
+      <h1 class="h3 mb-3 font-weight-normal">MESSAGE</h1>
+
+      <!-- User Message  -->
+      <label for="inputUserMessage" class="sr-only">Email address</label>
+      <textarea id="inputUserMessage" type="userMessage" [formControl]="message"  class="form-control" placeholder="Type message here.." #message required minlength="4"></textarea>
+
+      <!-- Send Message Button  -->
+      <button type="button" class="btn btn-lg btn-primary btn-block shadow-none" (click)="authService.saveMessage(message.value); message.form.reset();">POST</button>
+
+    </form>
+
+    <!-- Bottom Navbar Component -->
+    <app-navbar-bottom></app-navbar-bottom>
+
   </div>
-
-  <!-- Message Reply  -->
-  <form class="form-message shadow p-3 mb-5 bg-white rounded">
-
-    <!--  Icon -->
-    <img class="mb-4" src="../../../assets/Untitled-1.png" alt="" width="72" height="72">
-
-    <!-- Top Label -->
-    <h1 class="h3 mb-3 font-weight-normal">MESSAGE</h1>
-
-    <!-- Email  -->
-    <label for="inputUserMessage" class="sr-only">Email address</label>
-    <textarea type="userMessage" id="inputUserMessage" class="form-control" placeholder="Type message here.." #message required></textarea>
-
-    <!-- Send Message Button  -->
-    <button type="button" class="btn btn-lg btn-primary btn-block shadow-none" (click)="authService.saveMessage(message.value)">POST</button>
-
-  </form>
-
-  <!-- Bottom Navbar Component -->
-  <app-navbar-bottom></app-navbar-bottom>
-
-</main>
 
 </body>
 
