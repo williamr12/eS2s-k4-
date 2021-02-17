@@ -1,4 +1,4 @@
-import {Component, NgZone, OnInit} from '@angular/core';
+import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 
 // Firebase imports
 import {Observable} from 'rxjs';
@@ -10,6 +10,9 @@ import {AuthService} from '../../shared/services/auth.service';
 // Import Router
 import {Router} from '@angular/router';
 
+// Forms import
+import {FormControl, FormGroup, ValidationErrors, ValidatorFn} from '@angular/forms';
+
 @Component({
   selector: 'app-message-board',
   templateUrl: './message-board.component.html',
@@ -17,6 +20,12 @@ import {Router} from '@angular/router';
 })
 export class MessageBoardComponent implements OnInit {
 
+  @ViewChild('messageBoard') private myScrollContainer: ElementRef;
+
+  // Variable for user message in form
+  message = new FormControl('');
+
+  // Observer Messages from Firestore
   messages: Observable<any[]>;
 
   constructor(firestore: AngularFirestore,
@@ -24,12 +33,29 @@ export class MessageBoardComponent implements OnInit {
               public router: Router,
               public ngZone: NgZone,
   ) {
+
+    // Query all messages from firestore and sorting by date
     this.messages = firestore.collection('/messages', ref =>
       ref.orderBy('date')).valueChanges();
 
   }
 
   ngOnInit(): void {
+    // Keeps message display at most recent
+    this.scrollToBottom();
+  }
+
+  // Keeps message display at most recent
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
+  }
+
+  // Keeps message display at most recent
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
   }
 
 }
