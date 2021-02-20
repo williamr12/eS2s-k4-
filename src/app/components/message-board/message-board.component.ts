@@ -11,7 +11,7 @@ import {AuthService} from '../../shared/services/auth.service';
 import {Router} from '@angular/router';
 
 // Forms import
-import {FormControl, FormGroup, ValidationErrors, ValidatorFn} from '@angular/forms';
+import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-message-board',
@@ -23,7 +23,10 @@ export class MessageBoardComponent implements OnInit {
   @ViewChild('messageBoard') private myScrollContainer: ElementRef;
 
   // Variable for user message in form
-  message = new FormControl('');
+  messageForm = new FormControl('', [
+      Validators.required,
+      Validators.minLength(3)
+    ]);
 
   // Observer Messages from Firestore
   messages: Observable<any[]>;
@@ -41,8 +44,10 @@ export class MessageBoardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     // Keeps message display at most recent
     this.scrollToBottom();
+
   }
 
   // Keeps message display at most recent

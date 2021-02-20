@@ -57,10 +57,15 @@
 
       <!-- User Message  -->
       <label for="inputUserMessage" class="sr-only">Email address</label>
-      <textarea id="inputUserMessage" type="userMessage" [formControl]="message"  class="form-control" placeholder="Type message here.." #message required minlength="4"></textarea>
+      <textarea id="inputUserMessage" type="userMessage" [formControl] = "messageForm" class="form-control" required minlength="3" placeholder="Type message here.." formControlName="userMessage" required></textarea>
 
       <!-- Send Message Button  -->
-      <button type="button" class="btn btn-lg btn-primary btn-block shadow-none" (click)="authService.saveMessage(message.value); message.form.reset();">POST</button>
+      <button type="button" class="btn btn-lg btn-primary btn-block shadow-none" [disabled]="messageForm.errors" (click)="authService.saveMessage(messageForm.value); messageForm.reset();">POST</button>
+
+      <!-- Error Message  -->
+      <div class ="warning" *ngIf="messageForm.touched && messageForm.errors">
+        <p>Please enter a message that is at least 3 characters long</p>
+      </div>
 
     </form>
 
