@@ -93,8 +93,8 @@ export class AuthService {
 
   // Reset Password
   // tslint:disable-next-line:typedef
-  ForgotPassword(passwordResetEmail) {
-    return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
+  ForgotPassword(userEmail) {
+    return this.afAuth.sendPasswordResetEmail(userEmail)
       .then(() => {
         window.alert('Password reset email sent, check your inbox.');
       }).catch((error) => {
@@ -157,12 +157,12 @@ export class AuthService {
   }
 
   // Updates Display Name in Firestore
-  updateDisplayName(name): void {
+  updateDisplayName(newDisplayName): void {
 
     const user = firebase.auth().currentUser;
 
     user.updateProfile({
-      displayName: name
+      displayName: newDisplayName
     }).then(() => {
       console.log('Name updated!');
       firebase.auth().currentUser.reload();
