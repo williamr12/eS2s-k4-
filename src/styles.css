@@ -7,9 +7,29 @@ html,body{
 }
 
 /*Redirect Hover*/
+.redirectToLogin .redirect{
+  color: black;
+  transition: color 230ms ease-in-out;
+}
+
 .redirectToLogin .redirect:hover{
   color: #0071BC;
 }
+
+.redirectToSignUp .redirect{
+  color: black;
+  transition: color 230ms ease-in-out;
+}
+
+.redirectToSignUp .redirect:hover{
+  color: #0071BC;
+}
+
+.forgotPassword{
+  color: black;
+  transition: color 230ms ease-in-out;
+}
+
 .forgotPassword:hover{
   color: #0071BC;
 }
