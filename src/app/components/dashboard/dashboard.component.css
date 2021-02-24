@@ -1,3 +1,11 @@
+.container-fluid{
+  margin-top: 6vh;
+}
+
+.sidebar-sticky{
+  margin-top: 4vh;
+}
+
 .feather {
   width: 16px;
   height: 16px;
