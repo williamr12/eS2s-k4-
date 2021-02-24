@@ -3,10 +3,6 @@
 
   <div class = "home">
 
-    <!-- This is dynamically printing the list of users that are stored in firestore to the home page -->
-    <!-- Just because you create a new user doesn't mean it is automatically put into fire store -->
-    <!-- It needs to be added aside from authentication -->
-
     <div class = "home-items shadow p-3 mb-5 bg-white rounded">
       <!-- Show user data when logged in -->
       <div class= "form-group " *ngIf="authService.userData as user">
@@ -14,7 +10,7 @@
       </div>
 
         <!-- List Header -->
-        <h3>List of users stored in firestore!</h3>
+        <h3>Users</h3>
 
         <!-- List -->
         <ul class="text" *ngFor = "let user of users | async">
