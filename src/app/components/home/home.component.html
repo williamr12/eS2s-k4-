@@ -5,11 +5,15 @@
 
     <main class="px-3">
 
-      <h1>Welcome to Providers.Fyi</h1>
+      <!-- Go Back To Sign In? Route -->
+      <div class="redirectToLogin mt-3 mb-3" *ngIf="!authService.userData as user">
+        <h1>Welcome to Providers.Fyi</h1>
+        <span class ="lead"><span class="redirect" routerLink="/dashboard">Here to connect you with a provider in your network</span></span>
+      </div>
 
       <!-- Go Back To Sign In? Route -->
-      <div class="redirectToLogin mt-3 mb-3">
-        <span class ="lead"><span class="redirect" routerLink="/dashboard">Here to connect you with a provider in your network</span></span>
+      <div class="redirectToLogin mt-3 mb-3" *ngIf="authService.userData as user">
+        <h1>Hi {{user.displayName}}!</h1>
       </div>
 
     </main>

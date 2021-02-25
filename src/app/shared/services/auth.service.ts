@@ -53,12 +53,13 @@ export class AuthService {
 
         this.ngZone.run(() => {
           this.router.navigate(['home']);
-  });
+        });
 
         this.SetUserData(result.user);
       }).catch((error) => {
         window.alert(error.message);
       });
+
   }
 
   // Sign up with email/password
