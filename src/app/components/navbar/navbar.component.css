@@ -1,0 +1,20 @@
+.navbar-brand{
+  color: white;
+  transition: color 230ms ease-in-out;
+}
+
+.navbar-brand:hover{
+  color: #0071BC;
+}
+
+.nav-item .nav-link{
+  transition: color 230ms ease-in-out;
+}
+
+.nav-item .nav-link:hover{
+  color: #0071BC;
+}
+
+.bg-dark{
+  background-color: #2b2d2f !important;
+}

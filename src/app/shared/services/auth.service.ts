@@ -140,7 +140,6 @@ export class AuthService {
     });
   }
 
-
   // Saving message to firestore
   // tslint:disable-next-line:typedef
   saveMessage(userMessage) {
@@ -177,7 +176,7 @@ export class AuthService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['home']);
     });
   }
 }

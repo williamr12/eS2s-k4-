@@ -1,66 +1,79 @@
-<!-- Dashboard Component -->
+<!-- Dashboard Component-->
 <body>
 
-  <!-- Container for Sidebar and Main Content  -->
+  <!-- Container -->
   <div class="container-fluid">
 
-    <!-- Side Bar  -->
+    <!-- Row -->
     <div class="row">
 
-      <!-- Side Bar -->
-      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <!-- Side Bar-->
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column">
 
-        <!-- Side Bar -->
-        <div class="sidebar-sticky">
+            <!-- Options Header -->
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Options</span>
+              <a class="link-secondary" href="#" aria-label="Add a new report">
+                <span data-feather="plus-circle"></span>
+              </a>
+            </h6>
 
-          <!-- DashBoard Selection Side Bar -->
-          <ul class="nav flex-column border-bottom" >
+            <!-- Dashboard Link -->
             <li class="nav-item">
-              <a class="nav-link active" routerLink="/dashboard">
+              <a class="nav-link active" aria-current="page" routerLink="/dashboard" routerLinkActive="active">
                 <span data-feather="home"></span>
-                DashBoard <span class="sr-only">(current)</span>
+                Dashboard
               </a>
             </li>
+
+            <!-- Provider Map Link -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/provider-map" routerLinkActive="active">
+                <span data-feather="layers"></span>
+                Provider Map
+              </a>
+            </li>
+
+            <!-- Message Board Link -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/message-board" routerLinkActive="active">
+                <span data-feather="layers"></span>
+                Message Board
+              </a>
+            </li>
+
           </ul>
 
-          <!-- DashBoard Side Bar Test Header -->
+          <!-- My Info Header -->
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-            <span>Test Header</span>
-            <a class="d-flex align-items-center text-muted" href="#">
+            <span>My Info</span>
+            <a class="link-secondary" href="#" aria-label="Add a new report">
               <span data-feather="plus-circle"></span>
             </a>
           </h6>
 
-          <!-- DashBoard Side Bar Map-Test Item -->
-          <ul class="nav flex-column mb-2" routerLink="/provider-map">
+          <!-- Update My Information Link -->
+          <ul class="nav flex-column mb-2">
             <li class="nav-item">
-              <a class="nav-link">
+              <a class="nav-link" href="dashboard">
                 <span data-feather="file-text"></span>
-                Provider Map Test
-              </a>
-            </li>
-          </ul>
-
-          <!-- DashBoard Side Bar Message Board Test Item -->
-          <ul class="nav flex-column mb-2" routerLink="/message-board">
-            <li class="nav-item">
-              <a class="nav-link">
-                <span data-feather="file-text"></span>
-                Message Board Test
+                Update My Information
               </a>
             </li>
           </ul>
 
         </div>
-
       </nav>
 
-    </div>
+      <!-- Main Content -->
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-    <!-- Main content -->
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-
-      <div class="inner-adjust">
+        <!-- Dashboard Header -->
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Dashboard</h1>
+        </div>
 
         <!-- Show user data when logged in -->
         <div class="row" *ngIf="authService.userData as user">
@@ -98,17 +111,6 @@
 
           <!-- Display Name  -->
           <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">
-
-               <!-- Bootstrap Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
-                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z"/>
-                </svg>
-
-              </span>
-            </div>
 
             <!-- New Display Name  -->
             <input type="displayName" id="changeDisplayName" class="form-control" placeholder="Display Name" #displayName required>
@@ -116,13 +118,13 @@
           </div>
 
           <!-- Change Display Name Button  -->
-          <button type="button" class="btn btn-lg btn-primary btn-block shadow-none" (click)="authService.updateDisplayName(displayName.value)">Change Display Name</button>
+          <button type="button" class="btn btn-lg btn-primary btn-block shadow-none w-100" (click)="authService.updateDisplayName(displayName.value)">Change Display Name</button>
 
         </form>
 
-      </div>
+      </main>
 
-    </main>
+    </div>
 
   </div>
 
