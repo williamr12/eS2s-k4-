@@ -34,6 +34,7 @@ import { AuthService } from './shared/services/auth.service';
 
 // Google Maps
 import { GoogleMapsModule} from '@angular/google-maps';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { GoogleMapsModule} from '@angular/google-maps';
     VerifyEmailComponent,
     NavbarBottomComponent,
     ProviderMapComponent,
-    MessageBoardComponent
+    MessageBoardComponent,
+    NavbarComponent
   ],
 
   imports: [
