@@ -12,73 +12,44 @@
 
     <!-- Display Name  -->
     <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">
 
-         <!-- Bootstrap Icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
-            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z"/>
-          </svg>
+      <!-- ICON -->
+      <span class="input-group-text" id="displayNameIcon"><img src="assets/person-square.svg"></span>
 
-        </span>
-      </div>
-
-      <label for="inputDisplayName" class="sr-only">Display Name</label>
       <input type="displayName" id="inputDisplayName" class="form-control" placeholder="Display Name" #name required autofocus>
 
     </div>
 
     <!-- Email  -->
     <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon2">
 
-         <!-- Bootstrap Icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
-          </svg>
+      <!-- ICON -->
+      <span class="input-group-text" id="emailIcon"><img src="assets/envelope-fill.svg"></span>
 
-        </span>
-      </div>
-
-      <label for="inputEmail" class="sr-only">Email address</label>
       <input type="email" id="inputEmail" class="form-control" placeholder="Email address" #userEmail required autofocus>
 
     </div>
 
     <!-- Password  -->
     <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon3">
 
-          <!-- Bootstrap Icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
-            <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-          </svg>
+      <!-- ICON -->
+      <span class="input-group-text" id="passwordIcon"><img src="assets/key-fill.svg"></span>
 
-        </span>
-      </div>
-
-      <!-- Password  -->
-      <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="inputPassword" class="form-control" placeholder="Password" #userPassword required>
 
     </div>
 
     <!-- Sign Up Button  -->
-    <button type="button" class="btn btn-lg btn-primary btn-block shadow-none" (click)="authService.SignUp(userEmail.value, userPassword.value, name.value)">Sign Up</button>
+    <button type="submit" class="btn btn-lg btn-primary btn-block w-100" (click)="authService.SignUp(userEmail.value, userPassword.value, name.value)">Sign Up</button>
 
     <!-- "or"  -->
-    <div class = "form-group">
+    <div class = "form-group border-bottom">
       <span class="or"><span class="orInner">Or</span></span>
     </div>
 
-    <!-- Horizontal Line -->
-    <hr>
-
     <!-- Already have an Account? Route -->
-    <div class="redirectToLogin">
+    <div class="redirectToLogin mt-3 mb-3">
       <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>
     </div>
 

@@ -1,26 +1,20 @@
 .navbar-brand{
-  color: #f4f4f4;
-}
-
-/* Navbar Link Colors */
-.navbar-light .navbar-nav .nav-link {
-  color: #f4f4f4;
-}
-
-.navbar-brand{
   color: white;
   transition: color 230ms ease-in-out;
 }
 
-/* App Name Hover */
 .navbar-brand:hover{
   color: #0071BC;
 }
 
-a{
+.nav-item .nav-link{
   transition: color 230ms ease-in-out;
 }
 
-a:hover{
-  color: #0071BC !important;
+.nav-item .nav-link:hover{
+  color: #0071BC;
+}
+
+.bg-dark{
+  background-color: #2b2d2f !important;
 }

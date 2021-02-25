@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../shared/services/auth.service';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(firestore: AngularFirestore,
+              public authService: AuthService) { }
 
   ngOnInit(): void {
   }

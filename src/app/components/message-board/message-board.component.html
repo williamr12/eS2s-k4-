@@ -1,24 +1,24 @@
+<!-- Message Board Component -->
 <body>
 
-  <!-- Page Container-->
+  <!-- Page Container -->
   <div class="container">
 
-    <!-- Message Board Header  -->
+    <!-- Message Board Header -->
     <h1>Message Board</h1>
 
-    <!-- Horizontal Rule  -->
+    <!-- Horizontal Rule -->
     <hr>
 
-    <!-- Message Board Div  -->
+    <!-- Message Board Div -->
     <div class = "message-board">
 
       <!-- Message Board Div For Scroll Function  -->
       <div #messageBoard style="overflow: scroll; height: 600px;">
 
-        <!-- Display Message  -->
+        <!-- Display Message -->
         <div class="display-messages">
-          <!--      <p>Loading...</p>-->
-          <!-- List -->
+
           <ul class="text" *ngFor = "let message of messages | async">
 
             <!-- List For Loop -->
@@ -56,11 +56,10 @@
       <h1 class="h3 mb-3 font-weight-normal">MESSAGE</h1>
 
       <!-- User Message  -->
-      <label for="inputUserMessage" class="sr-only">Email address</label>
       <textarea id="inputUserMessage" type="userMessage" [formControl] = "messageForm" class="form-control" required minlength="3" placeholder="Type message here.." formControlName="userMessage" required></textarea>
 
       <!-- Send Message Button  -->
-      <button type="button" class="btn btn-lg btn-primary btn-block shadow-none" [disabled]="messageForm.errors" (click)="authService.saveMessage(messageForm.value); messageForm.reset();">POST</button>
+      <button type="button" class="btn btn-lg btn-primary btn-block shadow-none w-100" [disabled]="messageForm.errors" (click)="authService.saveMessage(messageForm.value); messageForm.reset();">POST</button>
 
       <!-- Error Message  -->
       <div class ="warning" *ngIf="messageForm.touched && messageForm.errors">

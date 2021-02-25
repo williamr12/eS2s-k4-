@@ -13,9 +13,9 @@ import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
-import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
 import { ProviderMapComponent } from './components/provider-map/provider-map.component';
 import { MessageBoardComponent } from './components/message-board/message-board.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 // Forms
 import {FormsModule} from '@angular/forms';
@@ -34,7 +34,7 @@ import { AuthService } from './shared/services/auth.service';
 
 // Google Maps
 import { GoogleMapsModule} from '@angular/google-maps';
-import { NavbarComponent } from './components/navbar/navbar.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +45,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     DashboardComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
-    NavbarBottomComponent,
     ProviderMapComponent,
     MessageBoardComponent,
     NavbarComponent
