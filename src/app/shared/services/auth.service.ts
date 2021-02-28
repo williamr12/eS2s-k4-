@@ -14,9 +14,6 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 // Import Router
 import { Router } from '@angular/router';
 
-// Import RxJs
-import { Subject} from 'rxjs';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -24,9 +21,6 @@ import { Subject} from 'rxjs';
 export class AuthService {
 
   private userData: any; // Save logged in user data
-  private isAuthenticated = false;
-  authChange = new Subject<boolean>();
-  private user: User;
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -51,90 +45,46 @@ export class AuthService {
     });
   }
 
+  // Sign in with email/password
+  // tslint:disable-next-line:typedef
+  SignIn(email, password) {
+    return this.afAuth.signInWithEmailAndPassword(email, password)
+      .then((result) => {
 
-  // This method is for registering a user
-  registerUser(email, password, displayName): void{
+        this.ngZone.run(() => {
+          this.router.navigate(['home']);
+        });
 
-    // Call the firebase createUserWithEmailAndPassword method
-    this.afAuth.createUserWithEmailAndPassword(
-      email,
-      password).then(result => {
-
-      // Sends Verification Email
-      this.SendVerificationMail();
-
-      // Set the User Data
-      this.SetUserData(result.user);
-
-      // Updating Display Name with Input
-      this.updateDisplayName(displayName);
-
-      // Logs Success Message
-      window.alert(result);
-
-    })
-      .catch(error => {
-
-        // Logs Error Message
-        window.alert(error);
-
-      });
-  }
-
-  // Login Method
-  login(email, password): void{
-
-    // Calling the firebase signInWithEmailAndPassword method
-    this.afAuth.signInWithEmailAndPassword(
-      email,
-      password).then(result => {
-
-      // then
-      // Log the result to the console
-      console.log(result);
-
-      // Setting User Data
-      this.SetUserData(result.user);
-
-      // Setting authChange to true when logged in
-      this.authChange.next(true);
-
-      // Navigating Home
-      this.router.navigate(['home']);
-
-    })
-      .catch(error => {
-        window.alert(error);
+        this.SetUserData(result.user);
+      }).catch((error) => {
+        window.alert(error.message);
       });
 
   }
 
-  // Logout Method
-  logout(): void{
+  // Sign up with email/password
+  // tslint:disable-next-line:typedef
+  SignUp(email, password, displayName) {
 
-    this.user = null;
-    // Setting authChange to false when logged out
-    this.authChange.next(true);
+    return this.afAuth.createUserWithEmailAndPassword(email, password)
+      .then((result) => {
 
-  }
+        /* Call the SendVerificationMail() function when new user sign
+        up and returns promise */
+        this.SendVerificationMail();
+        this.SetUserData(result.user);
 
-  // Get User Method
-  getUser(): User{
-    return {...this.userData};
-  }
+        // Updating Display Name with Input
+        this.updateDisplayName(displayName);
 
-  // isAuth Method
-  isAuth(): boolean{
-    return this.user != null;
-  }
-
-  // Reloads Page
-  reloadPage(): void{
-    window.location.reload();
+      }).catch((error) => {
+        window.alert(error.message);
+      });
   }
 
   // Send email verification when new user sign up
-  SendVerificationMail(): any {
+  // tslint:disable-next-line:typedef
+  SendVerificationMail() {
     return this.afAuth.currentUser.then((user) => {
       return user.sendEmailVerification();
     }).then(() => {
@@ -143,7 +93,8 @@ export class AuthService {
   }
 
   // Reset Password
-  ForgotPassword(userEmail): any{
+  // tslint:disable-next-line:typedef
+  ForgotPassword(userEmail) {
     return this.afAuth.sendPasswordResetEmail(userEmail)
       .then(() => {
         window.alert('Password reset email sent, check your inbox.');
@@ -213,10 +164,10 @@ export class AuthService {
     user.updateProfile({
       displayName: newDisplayName
     }).then(() => {
-      window.alert('Name updated!');
+      console.log('Name updated!');
       firebase.auth().currentUser.reload();
     }).catch((error) => {
-      window.alert('FAILED!');
+      console.log('FAILED!');
     });
 
   }
@@ -229,6 +180,15 @@ export class AuthService {
       this.router.navigate(['home']);
       this.reloadPage();
     });
+  }
+
+  // Reloads Page!
+  reloadPage(): void{
+    window.location.reload();
+  }
+
+  getUserData(): any{
+    return this.userData;
   }
 
 }

@@ -9,17 +9,11 @@ import {AngularFirestore} from '@angular/fire/firestore';
 })
 export class NavbarComponent implements OnInit {
 
-  isAuth: boolean;
-
   constructor(firestore: AngularFirestore,
               public authService: AuthService) { }
 
   ngOnInit(): void {
-    this.authService.authChange.subscribe(authStatus => {
 
-      this.isAuth = authStatus;
-
-    });
   }
 
 }
