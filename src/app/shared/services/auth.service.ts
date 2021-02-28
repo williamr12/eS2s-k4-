@@ -14,6 +14,9 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 // Import Router
 import { Router } from '@angular/router';
 
+// Import RxJs
+import { Subject} from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +24,9 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   private userData: any; // Save logged in user data
+  private isAuthenticated = false;
+  authChange = new Subject<boolean>();
+  private user: User;
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -45,47 +51,107 @@ export class AuthService {
     });
   }
 
-  // Sign in with email/password
-  // tslint:disable-next-line:typedef
-  SignIn(email, password) {
-    return this.afAuth.signInWithEmailAndPassword(email, password)
-      .then((result) => {
+  // This method is for registering a user
+  registerUser(email, password, displayName): any{
 
-        this.ngZone.run(() => {
-          this.router.navigate(['home']);
-        });
+    // Call the firebase createUserWithEmailAndPassword method
+    return this.afAuth.createUserWithEmailAndPassword(
+      email,
+      password).then(result => {
 
-        this.SetUserData(result.user);
-      }).catch((error) => {
-        window.alert(error.message);
+      // Sends Verification Email
+      this.SendVerificationMail();
+
+      // Set the User Data
+      this.SetUserData(result.user);
+
+      // Updating Display Name with Input
+      this.updateDisplayName(displayName);
+
+      // Logs Success Message
+      console.log(result);
+
+    })
+      .catch(error => {
+
+        // Logs Error Message
+        window.alert(error);
+
+      });
+  }
+
+  // Login Method
+  login(email, password): any{
+
+    // Calling the firebase signInWithEmailAndPassword method
+    return this.afAuth.signInWithEmailAndPassword(
+      email,
+      password).then(result => {
+
+      // then
+      // Log the result to the console
+      console.log(result);
+
+      // Setting User Data
+      this.SetUserData(result.user);
+
+      // Setting authChange to true when logged in
+      this.authChange.next(true);
+
+      // Navigating Home
+      this.router.navigate(['home']);
+
+    })
+      .catch(error => {
+        window.alert(error);
       });
 
   }
 
-  // Sign up with email/password
-  // tslint:disable-next-line:typedef
-  SignUp(email, password, displayName) {
+  // Logout Method
+  logout(): any{
 
-    return this.afAuth.createUserWithEmailAndPassword(email, password)
-      .then((result) => {
+    // Sign out
+    return this.afAuth.signOut().then(() => {
 
-        /* Call the SendVerificationMail() function when new user sign
-        up and returns promise */
-        this.SendVerificationMail();
-        this.SetUserData(result.user);
+      // then
+      // Setting user to null
+      this.user = null;
 
-        // Updating Display Name with Input
-        this.updateDisplayName(displayName);
+      // Setting authChange to false when logged out
+      this.authChange.next(true);
 
-      }).catch((error) => {
-        window.alert(error.message);
-      });
+      // Removing user from local Storage
+      localStorage.removeItem('user');
+
+      // Navigating to Home
+      this.router.navigate(['home']);
+
+      // Reloading Page
+      this.reloadPage();
+
+    });
+
+  }
+
+  // Get User Method
+  getUserData(): User{
+    return this.userData;
+  }
+
+  // isAuth Method
+  isAuth(): boolean{
+    return this.user != null;
+  }
+
+  // Reloads Page
+  reloadPage(): void{
+    window.location.reload();
   }
 
   // Send email verification when new user sign up
-  // tslint:disable-next-line:typedef
-  SendVerificationMail() {
-    return this.afAuth.currentUser.then((user) => {
+  SendVerificationMail(): any {
+    this.afAuth.currentUser.then((user) => {
       return user.sendEmailVerification();
     }).then(() => {
       this.router.navigate(['verify-email-address']);
@@ -93,8 +159,7 @@ export class AuthService {
   }
 
   // Reset Password
-  // tslint:disable-next-line:typedef
-  ForgotPassword(userEmail) {
+  ForgotPassword(userEmail): any{
     return this.afAuth.sendPasswordResetEmail(userEmail)
       .then(() => {
         window.alert('Password reset email sent, check your inbox.');
@@ -109,26 +174,13 @@ export class AuthService {
     return (user !== null && user.emailVerified !== false) ? true : false;
   }
 
-  // Auth logic to run auth providers
-  // tslint:disable-next-line:typedef
-  AuthLogin(provider) {
-    return this.afAuth.signInWithPopup(provider)
-      .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
-        });
-        this.SetUserData(result.user);
-      }).catch((error) => {
-        window.alert(error);
-      });
-  }
+  // Setting User  Data
+  SetUserData(user): any {
 
-  /* Setting up user data when sign in with username/password,
-  sign up with username/password and sign in with social auth
-  provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  // tslint:disable-next-line:typedef
-  SetUserData(user) {
+    // Getting User Reference from Firestore
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+
+    //  Setting up userData constant
     const userData: User = {
       userID: user.uid,
       email: user.email,
@@ -136,20 +188,28 @@ export class AuthService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified
     };
+
+    // Merging with Firstore collection
     return userRef.set(userData, {
       merge: true
     });
+
   }
 
   // Saving message to firestore
-  // tslint:disable-next-line:typedef
-  saveMessage(userMessage) {
+  saveMessage(userMessage): any {
+
+    // Creating an ID and getting firestore Reference
     const messageRef: AngularFirestoreDocument<any> = this.afs.doc(`messages/${this.afs.createId()}`);
+
+    // Creating our message data const
     const messageData = {
       date: new Date(),
       message: userMessage,
       displayName: this.userData.displayName,
     };
+
+    // Storing to firestore
     return messageRef.set(messageData, {
       merge: true
     });
@@ -164,31 +224,12 @@ export class AuthService {
     user.updateProfile({
       displayName: newDisplayName
     }).then(() => {
-      console.log('Name updated!');
+      window.alert('Name updated!');
       firebase.auth().currentUser.reload();
     }).catch((error) => {
-      console.log('FAILED!');
+      window.alert('FAILED!');
     });
 
-  }
-
-  // Sign out
-  // tslint:disable-next-line:typedef
-  SignOut() {
-    return this.afAuth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['home']);
-      this.reloadPage();
-    });
-  }
-
-  // Reloads Page!
-  reloadPage(): void{
-    window.location.reload();
-  }
-
-  getUserData(): any{
-    return this.userData;
   }
 
 }
