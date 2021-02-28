@@ -4,30 +4,30 @@
 <!--NavBar-->
 <app-navbar></app-navbar>
 
-  <!-- Verify Email -->
-  <div class="verify-email shadow p-3 mb-5 bg-white rounded">
+<!-- Verify Email -->
+<div class="verify-email shadow p-3 mb-5 bg-white rounded">
 
-    <!-- Thank you Header -->
-    <h2>Thank you!</h2>
+  <!-- Thank you Header -->
+  <h2>Thank you!</h2>
 
-    <!-- Auth Message -->
-    <div class="formGroup" *ngIf="authService.getUser() as user">
-      <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
-      <p class="text-center">Please check your email and click on the link to verify your email address before signing in.</p>
-    </div>
-
-    <!-- Resend Verification Email -->
-    <div class="formGroup">
-      <button type="button" class="btn btnPrimary" (click)="authService.SendVerificationMail()">
-        Resend Verification Email
-      </button>
-    </div>
-
-    <!-- Redirect to login -->
-    <div class="redirectToLogin">
-      <span>Go back?<span class="redirect" routerLink="/sign-in"> Sign in</span></span>
-    </div>
-
+  <!-- Auth Message -->
+  <div class="formGroup" *ngIf="authService.getUserData() as user">
+    <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
+    <p class="text-center">Please check your email and click on the link to verify your email address before signing in.</p>
   </div>
+
+  <!-- Resend Verification Email -->
+  <div class="formGroup">
+    <button type="button" class="btn btnPrimary" (click)="authService.SendVerificationMail()">
+      Resend Verification Email
+    </button>
+  </div>
+
+  <!-- Redirect to login -->
+  <div class="redirectToLogin">
+    <span>Go back?<span class="redirect" routerLink="/sign-in"> Sign in</span></span>
+  </div>
+
+</div>
 
 </body>
