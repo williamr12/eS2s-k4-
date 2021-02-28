@@ -1,14 +1,21 @@
 import {Component, NgZone, OnInit} from '@angular/core';
 
 // Firebase imports
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 
 // Import AuthService
 import { AuthService } from '../../shared/services/auth.service';
 
 // Import Router
 import { Router } from '@angular/router';
+
+// Import User
+import { User } from '../../shared/services/user';
+
+// Import RxJS
+import { Observable } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-home',
@@ -19,12 +26,12 @@ export class HomeComponent implements OnInit {
 
   users: Observable<any[]>;
 
-  constructor(firestore: AngularFirestore,
+  constructor(public firestore: AngularFirestore,
               public authService: AuthService,
               public router: Router,
               public ngZone: NgZone,
   ) {
-    this.users = firestore.collection('/users').valueChanges();
+    this.users = this.firestore.collection(`users/`).valueChanges();
   }
 
   ngOnInit(): void {
