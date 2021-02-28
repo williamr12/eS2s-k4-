@@ -18,3 +18,12 @@
 .bg-dark{
   background-color: #2b2d2f !important;
 }
+
+.dropdown-item{
+  transition: color 230ms ease-in-out;
+}
+
+.dropdown-item:hover{
+  background-color: white;
+  color: #0071BC;
+}

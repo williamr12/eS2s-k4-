@@ -2,7 +2,7 @@
 <body>
 
   <!-- Sign In form  -->
-  <form class="form-sign-in shadow p-3 mb-5 bg-white rounded">
+  <form class="form-sign-in shadow p-3 bg-white rounded">
 
     <!--  Icon -->
     <img class="mb-4" src="assets/Untitled-1.png" alt="" width="72" height="72">
@@ -31,7 +31,7 @@
     </div>
 
     <!-- Sign In Button  -->
-    <button type="submit" class="btn btn-lg btn-primary w-100" (click)="authService.SignIn(userEmail.value, userPassword.value)">Sign In</button>
+    <button type="submit" class="btn btn-lg btn-primary w-100" (click)="authService.login(userEmail.value, userPassword.value)">Sign In</button>
 
     <!-- "or"  -->
     <div class = "form-group border-bottom">
