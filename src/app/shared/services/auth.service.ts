@@ -26,7 +26,7 @@ export class AuthService {
   private userData: any; // Save logged in user data
   private isAuthenticated = false;
   authChange = new Subject<boolean>();
-  private user: User;
+  // private user: User;
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -116,7 +116,7 @@ export class AuthService {
 
       // then
       // Setting user to null
-      this.user = null;
+      // this.user = null;
 
       // Setting authChange to false when logged out
       this.authChange.next(true);
@@ -141,7 +141,7 @@ export class AuthService {
 
   // isAuth Method
   isAuth(): boolean{
-    return this.user != null;
+    return this.userData != null;
   }
 
   // Reloads Page
@@ -189,7 +189,7 @@ export class AuthService {
       emailVerified: user.emailVerified
     };
 
-    // Merging with Firstore collection
+    // Merging with Firestore collection
     return userRef.set(userData, {
       merge: true
     });
