@@ -11,7 +11,7 @@
     <h2>Thank you!</h2>
 
     <!-- Auth Message -->
-    <div class="formGroup" *ngIf="authService.userData as user">
+    <div class="formGroup" *ngIf="authService.getUser() as user">
       <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
       <p class="text-center">Please check your email and click on the link to verify your email address before signing in.</p>
     </div>

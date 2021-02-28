@@ -4,7 +4,10 @@
   <div class="container-fluid">
 
     <!-- .navbar-brand for your company, product, or project name. -->
-    <a class="navbar-brand" href="#">    Providers.Fyi</a>
+    <a class="navbar-brand" href="home">
+<!--      <img src="assets/Untitled-1.png" alt="" width="30" height="30" class="d-inline-block align-top">-->
+      Providers.Fyi
+    </a>
 
     <!--  .navbar-nav for a full-height and lightweight navigation (including support for dropdowns).  -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,19 +34,19 @@
 
             <!-- Only Shows if not signed in -->
             <!-- sign-in -->
-            <li><a class="dropdown-item" routerLink="/sign-in" *ngIf="!authService.userData as user">Sign In</a></li>
+            <li><a class="dropdown-item" routerLink="/sign-in" *ngIf="!authService.getUser() as user">Sign In</a></li>
             <!-- sign-up -->
-            <li><a class="dropdown-item" routerLink="/sign-up" *ngIf="!authService.userData as user">Sign Up</a></li>
+            <li><a class="dropdown-item" routerLink="/sign-up" *ngIf="!authService.getUser() as user">Sign Up</a></li>
 
             <!-- Only Shows if signed in -->
             <!-- Dashboard -->
-            <li><a class="dropdown-item" routerLink="/dashboard" *ngIf="authService.userData as user">Dashboard</a></li>
+            <li><a class="dropdown-item" routerLink="/dashboard" *ngIf="authService.getUser() as user">Dashboard</a></li>
 
             <!-- Only Shows if signed in -->
             <!-- Dropdown Divider -->
-            <li><hr class="dropdown-divider" *ngIf="authService.userData as user"></li>
+            <li><hr class="dropdown-divider" *ngIf="authService.getUser() as user"></li>
             <!-- sign-out -->
-            <li><a class="dropdown-item"routerLink="/home" *ngIf="authService.userData as user" (click)="authService.SignOut()">Sign Out</a></li>
+            <li><a class="dropdown-item"routerLink="/home" *ngIf="authService.getUser() as user" (click)="authService.SignOut()">Sign Out</a></li>
 
           </ul>
         </li>

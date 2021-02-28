@@ -2,7 +2,7 @@
 <body>
 
   <!-- Sign Up form  -->
-  <form class="form-sign-up shadow p-3 mb-5 bg-white rounded">
+  <form class="form-sign-up shadow p-3 bg-white rounded">
 
     <!--  Icon -->
     <img class="mb-4" src="assets/Untitled-1.png" alt="" width="72" height="72">
@@ -16,7 +16,7 @@
       <!-- ICON -->
       <span class="input-group-text" id="displayNameIcon"><img src="assets/person-square.svg"></span>
 
-      <input type="displayName" id="inputDisplayName" class="form-control" placeholder="Display Name" #name required autofocus>
+      <input type="displayName" id="inputDisplayName" class="form-control" placeholder="Display Name" #displayName required autofocus>
 
     </div>
 
@@ -41,7 +41,7 @@
     </div>
 
     <!-- Sign Up Button  -->
-    <button type="submit" class="btn btn-lg btn-primary btn-block w-100" (click)="authService.SignUp(userEmail.value, userPassword.value, name.value)">Sign Up</button>
+    <button type="submit" class="btn btn-lg btn-primary btn-block w-100" (click)="authService.registerUser(userEmail.value, userPassword.value, displayName.value)">Sign Up</button>
 
     <!-- "or"  -->
     <div class = "form-group border-bottom">
