@@ -1,5 +1,5 @@
 // Current interface for our user roles
-export interface Roles{
+export interface UserPermissions{
   baseUser: boolean;
   adminUser: boolean;
 }
@@ -12,5 +12,5 @@ export interface User {
   displayName: string;
   photoURL: string;
   emailVerified: boolean;
-  roles: Roles;
+  userPermissions: UserPermissions;
 }
