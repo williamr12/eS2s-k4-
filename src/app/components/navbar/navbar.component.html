@@ -27,20 +27,20 @@
 
             <!-- Only Shows if not signed in -->
             <!-- sign-in -->
-            <li><a class="dropdown-item" routerLink="/sign-in" *ngIf="!authService.getUserData() as user">Sign In</a></li>
+            <li><a class="dropdown-item" routerLink="/sign-in">Sign In</a></li>
             <!-- sign-up -->
-            <li><a class="dropdown-item" routerLink="/sign-up" *ngIf="!authService.getUserData() as user">Sign Up</a></li>
+            <li><a class="dropdown-item" routerLink="/sign-up">Sign Up</a></li>
 
             <!-- Only Shows if signed in -->
             <!-- Dashboard -->
-            <li><a class="dropdown-item" routerLink="/dashboard" *ngIf="authService.getUserData() as user">Dashboard</a></li>
+            <li><a class="dropdown-item" routerLink="/dashboard">Dashboard</a></li>
 
             <!-- Only Shows if signed in -->
             <!-- Dropdown Divider -->
-            <li><hr class="dropdown-divider" *ngIf="authService.getUserData() as user"></li>
+            <li><hr class="dropdown-divider"></li>
 
             <!-- sign-out -->
-            <li><a class="dropdown-item"routerLink="/home" *ngIf="authService.getUserData() as user" (click)="authService.logout()">Sign Out</a></li>
+            <li><a class="dropdown-item"routerLink="/home" (click)="authService.logout()">Sign Out</a></li>
 
           </ul>
         </li>
