@@ -6,13 +6,13 @@
   <main class="px-3">
 
     <!-- Go Back To Sign In? Route -->
-    <div class="redirectToLogin mt-3 mb-3" *ngIf="!authService.getUserData() as user">
+    <div class="redirectToLogin mt-3 mb-3" *ngIf="!(authService.afAuth.authState | async)">
       <h1>Welcome to Providers.Fyi</h1>
       <span class ="lead"><span class="redirect" routerLink="/dashboard">Here to connect you with a provider in your network</span></span>
     </div>
 
     <!-- Go Back To Sign In? Route -->
-    <div class="redirectToLogin mt-3 mb-3" *ngIf="authService.getUserData() as user">
+    <div class="redirectToLogin mt-3 mb-3" *ngIf="authService.user$ | async as user">
       <h1>Hi {{user.displayName}}!</h1>
     </div>
 

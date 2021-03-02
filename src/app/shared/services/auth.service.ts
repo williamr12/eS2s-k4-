@@ -15,7 +15,8 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Router } from '@angular/router';
 
 // Import RxJs
-import { Subject} from 'rxjs';
+import {Observable, of} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,32 +24,37 @@ import { Subject} from 'rxjs';
 
 export class AuthService {
 
-  private userData: any; // Save logged in user data
-  private isAuthenticated = false;
-  authChange = new Subject<boolean>();
-  // private user: User;
+  // Observables for Authentication
+  user$: Observable<User>;
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
-    public router: Router,
-    public ngZone: NgZone // NgZone service to remove outside scope warning
+    public router: Router, // Inject Router
   ) {
 
-    /* Saving user data in localstorage when
-    logged in and setting up null when logged out */
+    // Authenticating User Data
+    this.user$ = this.afAuth.authState.pipe(
+      switchMap(user => {
+        // User is Logged in
+        if (user) {
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+        }
+        else {
+          // User is Logged out
+          return of(null);
+        }
+      })
+    );
+
     this.afAuth.authState.subscribe(user => {
-
-      if (user) {
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
+      if (user && user.uid) {
+        console.log('user is logged in');
       } else {
-        localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
+        console.log('user not logged in');
       }
-
     });
+
   }
 
   // This method is for registering a user
@@ -95,11 +101,9 @@ export class AuthService {
       // Setting User Data
       this.SetUserData(result.user);
 
-      // Setting authChange to true when logged in
-      this.authChange.next(true);
 
       // Navigating Home
-      this.router.navigate(['home']);
+      this.router.navigate(['dashboard']);
 
     })
       .catch(error => {
@@ -115,12 +119,6 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
 
       // then
-      // Setting user to null
-      // this.user = null;
-
-      // Setting authChange to false when logged out
-      this.authChange.next(true);
-
       // Removing user from local Storage
       localStorage.removeItem('user');
 
@@ -132,16 +130,6 @@ export class AuthService {
 
     });
 
-  }
-
-  // Get User Method
-  getUserData(): User{
-    return this.userData;
-  }
-
-  // isAuth Method
-  isAuth(): boolean{
-    return this.userData != null;
   }
 
   // Reloads Page
@@ -168,13 +156,7 @@ export class AuthService {
       });
   }
 
-  // Returns true when user is logged in and email is verified
-  get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false) ? true : false;
-  }
-
-  // Setting User  Data
+  // Setting User Data
   SetUserData(user): any {
 
     // Getting User Reference from Firestore
@@ -186,7 +168,11 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified
+      emailVerified: user.emailVerified,
+      roles: {
+        baseUser: true,
+        adminUser: false
+      }
     };
 
     // Merging with Firestore collection
@@ -206,7 +192,7 @@ export class AuthService {
     const messageData = {
       date: new Date(),
       message: userMessage,
-      displayName: this.userData.displayName,
+      displayName: 'Test Name'
     };
 
     // Storing to firestore
@@ -228,6 +214,10 @@ export class AuthService {
       firebase.auth().currentUser.reload();
     }).catch((error) => {
       window.alert('FAILED!');
+    });
+
+    this.afs.doc(`users/${user.uid}`).update({
+      displayName : newDisplayName
     });
 
   }

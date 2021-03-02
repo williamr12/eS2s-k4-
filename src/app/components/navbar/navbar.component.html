@@ -27,21 +27,22 @@
 
             <!-- Only Shows if not signed in -->
             <!-- sign-in -->
-            <li><a class="dropdown-item" routerLink="/sign-in" *ngIf="!authService.getUserData() as user">Sign In</a></li>
+            <li><a class="dropdown-item" routerLink="/sign-in" *ngIf="!(authService.afAuth.authState | async)">Sign In</a></li>
             <!-- sign-up -->
-            <li><a class="dropdown-item" routerLink="/sign-up" *ngIf="!authService.getUserData() as user">Sign Up</a></li>
+            <li><a class="dropdown-item" routerLink="/sign-up" *ngIf="!(authService.afAuth.authState | async)">Sign Up</a></li>
 
             <!-- Only Shows if signed in -->
             <!-- Dashboard -->
-            <li><a class="dropdown-item" routerLink="/dashboard" *ngIf="authService.getUserData() as user">Dashboard</a></li>
+            <li><a class="dropdown-item" routerLink="/dashboard" *ngIf="(authService.afAuth.authState | async)">Dashboard</a></li>
 
             <!-- Only Shows if signed in -->
             <!-- Dropdown Divider -->
-            <li><hr class="dropdown-divider" *ngIf="authService.getUserData() as user"></li>
+            <li><hr class="dropdown-divider" *ngIf="(authService.afAuth.authState | async)"></li>
 
-            <!-- sign-out -->
-            <li><a class="dropdown-item"routerLink="/home" *ngIf="authService.getUserData() as user" (click)="authService.logout()">Sign Out</a></li>
-
+            <!-- Sign-out -->
+            <li><a class="dropdown-item"routerLink="/home" *ngIf="(authService.afAuth.authState | async)" (click)="authService.logout()">Sign Out</a></li>
+            <!-- Logged in ass -->
+            <li><a class="dropdown-item"routerLink="/dashboard" *ngIf="authService.user$ | async as user">{{user.displayName}}</a></li>
           </ul>
         </li>
       </ul>
