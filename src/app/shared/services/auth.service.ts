@@ -16,8 +16,7 @@ import { Router } from '@angular/router';
 
 // Import RxJs
 import {Observable, of} from 'rxjs';
-import {map, switchMap} from 'rxjs/operators';
-import {loggedIn} from '@angular/fire/auth-guard';
+import {first, map, switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +26,6 @@ export class AuthService {
 
   // Observables for Authentication
   user$: Observable<User>;
-  userLoggedIn$: Observable<boolean>;
-  userLoggedOut$: Observable<boolean>;
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -50,7 +47,13 @@ export class AuthService {
       })
     );
 
-    this.userLoggedIn$ = this.afAuth.authState.pipe(map(user => !!user));
+    this.afAuth.authState.subscribe(user => {
+      if (user && user.uid) {
+        console.log('user is logged in');
+      } else {
+        console.log('user not logged in');
+      }
+    });
 
   }
 
@@ -100,7 +103,7 @@ export class AuthService {
 
 
       // Navigating Home
-      this.router.navigate(['home']);
+      this.router.navigate(['dashboard']);
 
     })
       .catch(error => {
@@ -116,7 +119,6 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
 
       // then
-
       // Removing user from local Storage
       localStorage.removeItem('user');
 
@@ -166,7 +168,11 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified
+      emailVerified: user.emailVerified,
+      roles: {
+        baseUser: true,
+        adminUser: false
+      }
     };
 
     // Merging with Firestore collection
@@ -186,7 +192,7 @@ export class AuthService {
     const messageData = {
       date: new Date(),
       message: userMessage,
-      displayName: this.user$
+      displayName: 'Test Name'
     };
 
     // Storing to firestore
@@ -208,6 +214,10 @@ export class AuthService {
       firebase.auth().currentUser.reload();
     }).catch((error) => {
       window.alert('FAILED!');
+    });
+
+    this.afs.doc(`users/${user.uid}`).update({
+      displayName : newDisplayName
     });
 
   }
