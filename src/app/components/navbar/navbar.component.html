@@ -39,13 +39,15 @@
             <!-- Dropdown Divider -->
             <li><hr class="dropdown-divider" *ngIf="(authService.afAuth.authState | async)"></li>
 
+            <!-- User -->
+            <li><a class="dropdown-item"routerLink="/dashboard" *ngIf="authService.user$ | async as user">{{user.displayName}}</a></li>
             <!-- Sign-out -->
             <li><a class="dropdown-item"routerLink="/home" *ngIf="(authService.afAuth.authState | async)" (click)="authService.logout()">Sign Out</a></li>
-            <!-- Logged in ass -->
-            <li><a class="dropdown-item"routerLink="/dashboard" *ngIf="authService.user$ | async as user">{{user.displayName}}</a></li>
+
           </ul>
         </li>
       </ul>
     </div>
+
   </div>
 </nav>

@@ -29,7 +29,7 @@
               <br>
 
               <!-- Nickname -->
-              From: {{ message["displayName"] }}
+              From: {{ message.userInfo.displayName }}
               <br>
 
               <!-- Message -->
@@ -47,7 +47,7 @@
     </div>
 
     <!-- Message Reply  -->
-    <form class="form-message shadow p-3 bg-white rounded">
+    <form class="form-message shadow p-3 bg-white rounded" *ngIf="authService.user$ | async as user">
 
       <!--  Icon -->
       <img class="mb-4" src="../../../assets/Untitled-1.png" alt="" width="72" height="72">
@@ -59,7 +59,7 @@
       <textarea id="inputUserMessage" type="userMessage" [formControl] = "messageForm" class="form-control" required minlength="3" placeholder="Type message here.." formControlName="userMessage" required></textarea>
 
       <!-- Send Message Button  -->
-      <button type="button" class="btn btn-lg btn-primary btn-block shadow-none w-100" [disabled]="messageForm.errors" (click)="authService.saveMessage(messageForm.value); messageForm.reset();">POST</button>
+      <button type="button" class="btn btn-lg btn-primary btn-block shadow-none w-100" [disabled]="messageForm.errors" (click)="authService.saveMessage(messageForm.value, user.displayName, user.userID); messageForm.reset();">POST</button>
 
       <!-- Error Message  -->
       <div class ="warning" *ngIf="messageForm.touched && messageForm.errors">
