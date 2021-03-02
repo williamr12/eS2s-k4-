@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 
 // Import RxJs
 import {Observable, of} from 'rxjs';
-import {first, map, switchMap} from 'rxjs/operators';
+import {switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
