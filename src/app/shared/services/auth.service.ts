@@ -24,7 +24,7 @@ import {switchMap} from 'rxjs/operators';
 
 export class AuthService {
 
-  // Observables for Authentication
+  // Observable for Authentication
   user$: Observable<User>;
 
   constructor(
@@ -33,7 +33,7 @@ export class AuthService {
     public router: Router, // Inject Router
   ) {
 
-    // Authenticating User Data
+    // Getting Authenticated User Data
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         // User is Logged in
@@ -46,15 +46,6 @@ export class AuthService {
         }
       })
     );
-
-    this.afAuth.authState.subscribe(user => {
-      if (user && user.uid) {
-        console.log('user is logged in');
-      } else {
-        console.log('user not logged in');
-      }
-    });
-
   }
 
   // This method is for registering a user
@@ -119,9 +110,6 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
 
       // then
-      // Removing user from local Storage
-      localStorage.removeItem('user');
-
       // Navigating to Home
       this.router.navigate(['home']);
 
@@ -183,7 +171,7 @@ export class AuthService {
   }
 
   // Saving message to firestore
-  saveMessage(userMessage): any {
+  saveMessage(userMessage, name, id): any {
 
     // Creating an ID and getting firestore Reference
     const messageRef: AngularFirestoreDocument<any> = this.afs.doc(`messages/${this.afs.createId()}`);
@@ -192,7 +180,11 @@ export class AuthService {
     const messageData = {
       date: new Date(),
       message: userMessage,
-      displayName: 'Test Name'
+      // User Info
+      userInfo: {
+        userID: id,
+        displayName: name
+      }
     };
 
     // Storing to firestore
@@ -210,7 +202,7 @@ export class AuthService {
     user.updateProfile({
       displayName: newDisplayName
     }).then(() => {
-      window.alert('Name updated!');
+      console.log('Name updated!');
       firebase.auth().currentUser.reload();
     }).catch((error) => {
       window.alert('FAILED!');
