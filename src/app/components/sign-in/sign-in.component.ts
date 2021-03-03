@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 // Import AuthService
 import { AuthService } from '../../shared/services/auth.service';
 
+// Forms import
+import {FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+
 
 @Component({
   selector: 'app-sign-in',
@@ -12,16 +15,18 @@ import { AuthService } from '../../shared/services/auth.service';
 
 export class SignInComponent implements OnInit {
 
+  loginForm = this.formBuilder.group({
+    email: [null, [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
+    password: ['', Validators.required]
+  });
+
+
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    private formBuilder: FormBuilder
   ) { }
 
-  ngOnInit(): void { }
-
-  onSumbit(): void{
-
-    window.alert('Hello!');
-
+  ngOnInit(): void {
   }
 
 }

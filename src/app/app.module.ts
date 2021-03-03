@@ -21,6 +21,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import {FormsModule} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 // Firebase Imports
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule} from '@angular/fire/auth';
