@@ -34,7 +34,6 @@ export class MessageBoardComponent implements OnInit {
   constructor(firestore: AngularFirestore,
               public authService: AuthService,
               public router: Router,
-              public ngZone: NgZone,
   ) {
 
     // Query all messages from firestore and sorting by date
