@@ -1,33 +1,38 @@
 <!-- Sign In Form Component-->
 <body>
 
-  <!-- Sign In form  -->
+  <!-- Log In form  -->
   <form class="form-sign-in shadow p-3 bg-white rounded" [formGroup]="loginForm">
 
-    <!--  Icon -->
+    <!-- Logo -->
     <img class="mb-4" src="assets/Untitled-1.png" alt="" width="72" height="72">
 
     <!-- Top Label -->
-    <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
+    <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
 
     <!-- Email  -->
     <div class="input-group mb-3">
 
-      <!-- ICON -->
+      <!-- Email Icon -->
       <span class="input-group-text" id="emailIcon"><img src="assets/envelope-fill.svg"></span>
 
-      <input type="email" class="form-control" placeholder="Email" formControlName="email"
+      <!-- Email Input -->
+      <input type="email" class="form-control" placeholder="Email Address" formControlName="email"
 
              [ngClass]="
             (loginForm.get('email').touched ||
               loginForm.get('email').dirty) &&
             loginForm.get('email').hasError('required')
               ? 'is-invalid'
-              : '' ||
+              : ''
+
+              ||
 
               loginForm.get('email').hasError('pattern')
               ? 'is-invalid'
-              : '' ||
+              : ''
+
+              ||
 
                 ((loginForm.get('email').touched ||
                   loginForm.get('email').dirty) &&
@@ -35,8 +40,9 @@
               ? 'is-valid'
               : ''
           "
-      >
+      autofocus>
 
+      <!-- Invalid Feedback Goes Here -->
       <div class="invalid-feedback">
 
         {{ loginForm.get("email").hasError("required") ? " Email is required" : "" }}
@@ -44,6 +50,7 @@
 
       </div>
 
+      <!-- Valid Feedback Goes Here -->
       <div class = "valid-feedback">
       </div>
 
@@ -52,14 +59,17 @@
     <!-- Password  -->
     <div class="input-group mb-3">
 
-      <!-- ICON -->
+      <!-- Password Icon -->
       <span class="input-group-text" id="passwordIcon"><img src="assets/key-fill.svg"></span>
 
+      <!-- Password Input -->
       <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password"
 
              [ngClass]="(loginForm.get('password').touched ||
              loginForm.get('password').dirty) &&
-             loginForm.get('password').errors ? 'is-invalid' : '' ||
+             loginForm.get('password').errors ? 'is-invalid' : ''
+
+             ||
 
              ((loginForm.get('password').touched ||
                loginForm.get('password').dirty) &&
@@ -69,19 +79,21 @@
 
       ">
 
+      <!-- Invalid Feedback Goes Here -->
       <div class="invalid-feedback">
 
         {{ loginForm.get("password").hasError("required") ? " Please enter a password" : "" }}
 
       </div>
 
+      <!-- Valid Feedback Goes Here -->
       <div class = "valid-feedback">
       </div>
 
     </div>
 
-    <!-- Sign In Button  -->
-    <button type="submit" class="btn btn-lg btn-primary w-100" (click)="authService.login(loginForm.value.email, loginForm.value.password)">Sign In</button>
+    <!-- Login Button  -->
+    <button type="button" class="btn btn-lg btn-primary w-100" [disabled]="loginForm.invalid" (click)="authService.logIn(loginForm.value)">Log In</button>
 
     <!-- "or"  -->
     <div class = "form-group border-bottom">
@@ -95,7 +107,7 @@
 
     <!-- Don't have an account? Route -->
     <div class="redirectToSignUp">
-      <span>Don't have an account?<span class="redirect" routerLink="/sign-up"> Sign Up</span></span>
+      <span>Don't have an account? <span class="redirect" routerLink="/sign-up">Create Account</span></span>
     </div>
 
   </form>

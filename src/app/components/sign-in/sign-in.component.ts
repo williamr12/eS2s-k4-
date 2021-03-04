@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
 
 // Forms import
-import {FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class SignInComponent implements OnInit {
 
   loginForm = this.formBuilder.group({
     email: [null, [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
-    password: ['', Validators.required]
+    password: [null, Validators.required]
   });
 
 

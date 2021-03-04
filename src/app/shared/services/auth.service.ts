@@ -14,7 +14,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 // Import Router
 import { Router } from '@angular/router';
 
-// Import RxJs
+// Imports For RxJs
 import {Observable, of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 
@@ -24,7 +24,7 @@ import {switchMap} from 'rxjs/operators';
 
 export class AuthService {
 
-  // Observable for Authentication
+  // User Observable
   user$: Observable<User>;
 
   constructor(
@@ -35,21 +35,28 @@ export class AuthService {
 
     // Getting Authenticated User Data
     this.user$ = this.afAuth.authState.pipe(
+
       switchMap(user => {
+
         // User is Logged in
         if (user) {
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
         }
+
+        // User is Logged out
         else {
-          // User is Logged out
           return of(null);
         }
+
       })
     );
   }
 
-  // This method is for registering a user
-  registerUser(email, password, displayName): any{
+  // Create User Method
+  createUser(createAccountForm): any{
+
+    // Destructuring Form Values
+    const {email, password, displayName} = createAccountForm;
 
     // Call the firebase createUserWithEmailAndPassword method
     return this.afAuth.createUserWithEmailAndPassword(
@@ -78,14 +85,17 @@ export class AuthService {
   }
 
   // Login Method
-  login(email, password): any{
+  logIn(loginForm): any{
+
+    // Destructuring Form Values
+    const {email , password } = loginForm;
 
     // Calling the firebase signInWithEmailAndPassword method
     return this.afAuth.signInWithEmailAndPassword(
       email,
       password).then(result => {
 
-      // then
+      // Then
       // Log the result to the console
       console.log(result);
 
@@ -100,45 +110,59 @@ export class AuthService {
       .catch(error => {
         window.alert(error);
       });
-
   }
 
-  // Logout Method
-  logout(): any{
+  // Log Out Method
+  logOut(): any{
 
     // Sign out
     return this.afAuth.signOut().then(() => {
 
-      // then
+      // Then
       // Navigating to Home
       this.router.navigate(['home']);
 
-      // Reloading Page
-      this.reloadPage();
+      // Reload Page
+      window.location.reload();
 
     });
-
   }
 
-  // Reloads Page
-  reloadPage(): void{
-    window.location.reload();
-  }
-
-  // Send email verification when new user sign up
+  // Send Email Verification For New Account
   SendVerificationMail(): any {
+
     this.afAuth.currentUser.then((user) => {
+
+      // Calling the firebase sendEmailVerification method
       return user.sendEmailVerification();
+
     }).then(() => {
+
+      // Then
+      // Navigate To verify-email-address Component
       this.router.navigate(['verify-email-address']);
+
     });
   }
 
   // Reset Password
-  ForgotPassword(userEmail): any{
-    return this.afAuth.sendPasswordResetEmail(userEmail)
+  ForgotPassword(resetPasswordForm): any{
+
+    // Destructuring Form Values
+    const {email} = resetPasswordForm;
+
+    // Calling the firebase sendEmailVerification method
+    return this.afAuth.sendPasswordResetEmail(email)
+
       .then(() => {
+
+        // Then
+        // Alert User
         window.alert('Password reset email sent, check your inbox.');
+
+        // Navigate Home
+        this.router.navigate(['home']);
+
       }).catch((error) => {
         window.alert(error);
       });
@@ -150,7 +174,7 @@ export class AuthService {
     // Getting User Reference from Firestore
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
 
-    //  Setting up userData constant
+    //  userData
     const userData = {
       userID: user.uid,
       email: user.email,
@@ -166,7 +190,6 @@ export class AuthService {
     return userRef.set(userData, {
       merge: true
     });
-
   }
 
   // Saving message to firestore
@@ -177,39 +200,53 @@ export class AuthService {
 
     // Creating our message data const
     const messageData = {
+
+      // Message Data
       date: new Date(),
       message: userMessage,
-      // User Info
+
+      // User Info For Posted Message
       userInfo: {
         userID: id,
         displayName: name
       }
+
     };
 
     // Storing to firestore
     return messageRef.set(messageData, {
       merge: true
     });
-
   }
 
   // Updates Display Name in Firestore
   updateDisplayName(newDisplayName): void {
 
+    // Getting Current User
     const user = firebase.auth().currentUser;
 
+    // Firebase updateProfile MEthod
     user.updateProfile({
+
       displayName: newDisplayName
+
     }).then(() => {
+
+      // Then
+      // Log Result
       console.log('Name updated!');
+
+      // Reload User
       firebase.auth().currentUser.reload();
+
     }).catch((error) => {
       window.alert('FAILED!');
     });
 
+    // Update Firestore User Information
     this.afs.doc(`users/${user.uid}`).update({
       displayName : newDisplayName
     });
-
   }
+
 }
