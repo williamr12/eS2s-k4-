@@ -25,24 +25,24 @@
 
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-            <!-- Only Shows if not signed in -->
-            <!-- sign-in -->
-            <li><a class="dropdown-item" routerLink="/sign-in" *ngIf="!(authService.afAuth.authState | async)">Sign In</a></li>
-            <!-- sign-up -->
-            <li><a class="dropdown-item" routerLink="/sign-up" *ngIf="!(authService.afAuth.authState | async)">Sign Up</a></li>
+            <!-- Only Shows if not Logged In -->
+            <!-- Log In -->
+            <li><a class="dropdown-item" routerLink="/sign-in" *ngIf="!(authService.afAuth.authState | async)">Log In</a></li>
+            <!-- Create Account -->
+            <li><a class="dropdown-item" routerLink="/sign-up" *ngIf="!(authService.afAuth.authState | async)">Create Account</a></li>
 
-            <!-- Only Shows if signed in -->
+            <!-- Only Shows if Logged In -->
             <!-- Dashboard -->
             <li><a class="dropdown-item" routerLink="/dashboard" *ngIf="(authService.afAuth.authState | async)">Dashboard</a></li>
 
-            <!-- Only Shows if signed in -->
+            <!-- Only Shows if Logged In -->
             <!-- Dropdown Divider -->
             <li><hr class="dropdown-divider" *ngIf="(authService.afAuth.authState | async)"></li>
 
             <!-- User -->
             <li><a class="dropdown-item"routerLink="/dashboard" *ngIf="authService.user$ | async as user">{{user.displayName}}</a></li>
-            <!-- Sign-out -->
-            <li><a class="dropdown-item"routerLink="/home" *ngIf="(authService.afAuth.authState | async)" (click)="authService.logout()">Sign Out</a></li>
+            <!-- Log Out -->
+            <li><a class="dropdown-item"routerLink="/home" *ngIf="(authService.afAuth.authState | async)" (click)="authService.logOut()">Log Out</a></li>
 
           </ul>
         </li>
