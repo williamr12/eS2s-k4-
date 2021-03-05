@@ -161,7 +161,7 @@
 
           </div>
 
-          <!-- Password Reset Button  -->
+          <!-- Update Info Button  -->
           <button type="submit" class="btn btn-lg btn-primary w-100"  [disabled]="updateInformationForm.invalid" (click)="authService.updateInformation(updateInformationForm.get('displayName').value, updateInformationForm.get('photoURL').value); updateInformationForm.reset()">Update</button>
 
           <!-- Forgot Password Route -->
