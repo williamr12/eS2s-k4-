@@ -15,6 +15,7 @@ import { ForgotPasswordComponent} from './components/forgot-password/forgot-pass
 import {VerifyEmailComponent} from './components/verify-email/verify-email.component';
 import {ProviderMapComponent} from './components/provider-map/provider-map.component';
 import { MessageBoardComponent } from './components/message-board/message-board.component';
+import { UpdateInformationComponent } from './components/update-information/update-information.component';
 
 // Importing the AuthGuard
 import { AuthGuard } from './shared/guard/auth.guard';
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent},
   { path: 'verify-email-address', component: VerifyEmailComponent},
   { path: 'provider-map', component: ProviderMapComponent, canActivate: [AuthGuard] },
-  { path: 'message-board', component: MessageBoardComponent, canActivate: [AuthGuard] }
+  { path: 'message-board', component: MessageBoardComponent, canActivate: [AuthGuard] },
+  { path: 'update-information', component: UpdateInformationComponent, canActivate: [AuthGuard] }
 
 ];
 

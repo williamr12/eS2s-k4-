@@ -15,7 +15,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 export class ForgotPasswordComponent implements OnInit {
 
   resetPasswordForm = this.formBuilder.group({
-    email: [null, [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
+    email: [null, [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]]
   });
 
 

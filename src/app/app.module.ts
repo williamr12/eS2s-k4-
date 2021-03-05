@@ -16,6 +16,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { ProviderMapComponent } from './components/provider-map/provider-map.component';
 import { MessageBoardComponent } from './components/message-board/message-board.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { UpdateInformationComponent } from './components/update-information/update-information.component';
 
 // Forms
 import {FormsModule} from '@angular/forms';
@@ -36,7 +37,6 @@ import { AuthService } from './shared/services/auth.service';
 // Google Maps
 import { GoogleMapsModule} from '@angular/google-maps';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +48,8 @@ import { GoogleMapsModule} from '@angular/google-maps';
     VerifyEmailComponent,
     ProviderMapComponent,
     MessageBoardComponent,
-    NavbarComponent
+    NavbarComponent,
+    UpdateInformationComponent
   ],
 
   imports: [
