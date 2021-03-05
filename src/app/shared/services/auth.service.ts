@@ -64,10 +64,10 @@ export class AuthService {
       password).then(result => {
 
       // Sends Verification Email
-      this.SendVerificationMail();
+      this.sendVerificationMail();
 
       // Set the User Data
-      this.SetUserData(result.user);
+      this.setUserData(result.user);
 
       // Updating Display Name with Input
       this.updateDisplayName(displayName);
@@ -100,8 +100,7 @@ export class AuthService {
       console.log(result);
 
       // Setting User Data
-      this.SetUserData(result.user);
-
+      this.setUserData(result.user);
 
       // Navigating Home
       this.router.navigate(['dashboard']);
@@ -129,7 +128,7 @@ export class AuthService {
   }
 
   // Send Email Verification For New Account
-  SendVerificationMail(): any {
+  sendVerificationMail(): any {
 
     this.afAuth.currentUser.then((user) => {
 
@@ -146,7 +145,7 @@ export class AuthService {
   }
 
   // Reset Password
-  ForgotPassword(resetPasswordForm): any{
+  resetPassword(resetPasswordForm): any{
 
     // Destructuring Form Values
     const {email} = resetPasswordForm;
@@ -169,7 +168,7 @@ export class AuthService {
   }
 
   // Setting User Data
-  SetUserData(user): any {
+  setUserData(user): any {
 
     // Getting User Reference from Firestore
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
@@ -246,6 +245,38 @@ export class AuthService {
     // Update Firestore User Information
     this.afs.doc(`users/${user.uid}`).update({
       displayName : newDisplayName
+    });
+  }
+
+  // Updates Display Name in Firestore
+  updateInformation(newDisplayName, newPhotoURL): any {
+
+    // Getting Current User
+    const user = firebase.auth().currentUser;
+
+    // Firebase updateProfile Method
+    user.updateProfile({
+
+      displayName: newDisplayName,
+      photoURL: newPhotoURL
+
+    }).then(() => {
+
+      // Then
+      // Log Result
+      window.alert('Information Updated Successfully');
+
+      // Reload User
+      firebase.auth().currentUser.reload();
+
+    }).catch((error) => {
+      window.alert('FAILED!');
+    });
+
+    // Update Firestore User Information
+    this.afs.doc(`users/${user.uid}`).update({
+      displayName : newDisplayName,
+      photoURL: newPhotoURL
     });
   }
 

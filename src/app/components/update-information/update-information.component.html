@@ -1,0 +1,180 @@
+<!-- Dashboard Component-->
+<body>
+
+  <!-- Container -->
+  <div class="container-fluid mt-5">
+
+    <!-- Row -->
+    <div class="row">
+
+      <!-- Side Bar-->
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column">
+
+            <!-- Options Header -->
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Options</span>
+              <a class="link-secondary" href="#" aria-label="Add a new report">
+                <span data-feather="plus-circle"></span>
+              </a>
+            </h6>
+
+            <!-- Dashboard Link -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+                <span data-feather="home"></span>
+                Dashboard
+              </a>
+            </li>
+
+            <!-- Provider Map Link -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/provider-map" routerLinkActive="active">
+                <span data-feather="layers"></span>
+                Provider Map
+              </a>
+            </li>
+
+            <!-- Message Board Link -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/message-board" routerLinkActive="active">
+                <span data-feather="layers"></span>
+                Message Board
+              </a>
+            </li>
+
+            <!-- My Info Header -->
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>My Info</span>
+              <a class="link-secondary" href="#" aria-label="Add a new report">
+                <span data-feather="plus-circle"></span>
+              </a>
+            </h6>
+
+            <!-- Update Info Link -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/update-information" routerLinkActive="active">
+                <span data-feather="layers"></span>
+                Update Information
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </nav>
+
+      <!-- Main Content -->
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-3 text-center">
+
+        <!-- Dashboard Header -->
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Update Information</h1>
+        </div>
+
+        <!-- Update Information form  -->
+        <form class="form-update-info shadow p-3 bg-white rounded mt-5" [formGroup]="updateInformationForm">
+
+          <!-- Logo -->
+          <img class="mb-4" src="assets/Untitled-1.png" alt="" width="72" height="72">
+
+          <!-- Top Label -->
+          <h1 class="h3 mb-3 font-weight-normal">Update Information</h1>
+
+          <!-- Display Name -->
+          <div class="input-group mb-3">
+
+            <!-- Display Name Icon-->
+            <span class="input-group-text" id="emailIcon"><img src="assets/person-square.svg"></span>
+
+            <!-- Display Name Input -->
+            <input type="name" class="form-control" placeholder="Display Name" formControlName="displayName"
+
+                   [ngClass]="
+              (updateInformationForm.get('displayName').touched ||
+                updateInformationForm.get('displayName').dirty) &&
+              updateInformationForm.get('displayName').hasError('required')
+                ? 'is-invalid'
+                : ''
+
+                ||
+
+                  ((updateInformationForm.get('displayName').touched ||
+                    updateInformationForm.get('displayName').dirty) &&
+                    !updateInformationForm.get('displayName').invalid)
+                ? 'is-valid'
+                : ''
+            "
+            >
+
+            <!-- Invalid Feedback Goes Here -->
+            <div class="invalid-feedback">
+
+              {{ updateInformationForm.get("displayName").hasError("required") ? " Please enter a display name.." : "" }}
+
+            </div>
+
+            <!-- Valid Feedback Goes Here -->
+            <div class = "valid-feedback">
+            </div>
+
+          </div>
+
+          <!-- Photo URL -->
+          <div class="input-group mb-3">
+
+            <!-- Photo URL Icon-->
+            <span class="input-group-text" id="photoURLIcon"><img src="assets/file-image-fill.svg"></span>
+
+            <!-- Photo URL Input -->
+            <input type="name" class="form-control" placeholder="Photo URL" formControlName="photoURL"
+
+                   [ngClass]="
+              (updateInformationForm.get('photoURL').touched ||
+                updateInformationForm.get('photoURL').dirty) &&
+              updateInformationForm.get('photoURL').hasError('required')
+                ? 'is-invalid'
+                : ''
+
+                ||
+
+                  ((updateInformationForm.get('photoURL').touched ||
+                    updateInformationForm.get('photoURL').dirty) &&
+                    !updateInformationForm.get('photoURL').invalid)
+                ? 'is-valid'
+                : ''
+            "
+            >
+
+            <!-- Invalid Feedback Goes Here -->
+            <div class="invalid-feedback">
+
+              {{ updateInformationForm.get("photoURL").hasError("required") ? " Please enter a photo url.." : "" }}
+
+            </div>
+
+            <!-- Valid Feedback Goes Here -->
+            <div class = "valid-feedback">
+            </div>
+
+          </div>
+
+          <!-- Update Info Button  -->
+          <button type="submit" class="btn btn-lg btn-primary w-100"  [disabled]="updateInformationForm.invalid" (click)="authService.updateInformation(updateInformationForm.get('displayName').value, updateInformationForm.get('photoURL').value); updateInformationForm.reset()">Update</button>
+
+          <!-- Forgot Password Route -->
+          <div class="forgotPassword mt-3 mb-3">
+            <span routerLink="/forgot-password">Reset Password?</span>
+          </div>
+
+        </form>
+
+      </main>
+
+    </div>
+
+  </div>
+
+</body>
