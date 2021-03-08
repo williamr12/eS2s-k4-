@@ -1,8 +1,18 @@
 <!-- Provider Map Component -->
+<head>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script src="./assets/js/provider-map.component.js"></script>
+</head>
 <body>
 
-  <div class="container shadow p-3 mb-5 bg-white rounded">
+  <div id="map" class="container shadow p-3 mb-5 bg-white rounded">
 
+    <input
+      id="pac-input"
+      class="controls"
+      type="text"
+      placeholder="Search"
+    />
     <google-map
       height="500px"
       width="100%"
@@ -29,5 +39,9 @@
 
   </div>
 
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9cs5oG6pkWXlJi_QJ0bDzPPjsJvYeWhs&callback=initAutocomplete&libraries=places&v=weekly"
+    async
+  ></script>
 </body>
 

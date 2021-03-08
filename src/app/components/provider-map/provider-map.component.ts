@@ -2,6 +2,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 
+declare function initMap(): any;
+declare function createMarker(place): any;
+declare function initAutocomplete(): any;
+
 @Component({
   selector: 'app-map',
   templateUrl: './provider-map.component.html',
@@ -23,7 +27,7 @@ export class ProviderMapComponent implements OnInit {
       featureType: 'poi',
       elementType: 'labels',
       stylers: [{
-        visibility: 'off'
+        visibility: 'on'
       }]
     }]
   };
@@ -32,6 +36,10 @@ export class ProviderMapComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   ngOnInit() {
+
+    initMap();
+    initAutocomplete();
+
     navigator.geolocation.getCurrentPosition(x => {
       this.center = {
         lat: 44.956833,
@@ -76,8 +84,9 @@ export class ProviderMapComponent implements OnInit {
     });
   }
   // tslint:disable-next-line:typedef
-  openInfo(marker: MapMarker, info) {
+  openInfo(marker: HTMLElement, info) {
     this.infoContent = info;
+    // @ts-ignore
     this.info.open(marker);
 
   }
