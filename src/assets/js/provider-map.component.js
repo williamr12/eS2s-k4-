@@ -1,10 +1,10 @@
 let map;
 let service;
-let infowindow;
+let infoWindow;
 
 function initMap() {
-  const sydney = new google.maps.LatLng(-33.867, 151.195);
-  infowindow = new google.maps.InfoWindow();
+  const twinCities = new google.maps.LatLng(44.956833, -93.181056);
+  infoWindow = new google.maps.InfoWindow();
   map = new google.maps.Map(document.getElementById("map"), {
     center: sydney,
     zoom: 15,
@@ -31,8 +31,8 @@ function createMarker(place) {
     position: place.geometry.location,
   });
   google.maps.event.addListener(marker, "click", () => {
-    infowindow.setContent(place.name || "");
-    infowindow.open(map);
+    infoWindow.setContent(place.name || "");
+    infoWindow.open(map);
   });
 }
 
