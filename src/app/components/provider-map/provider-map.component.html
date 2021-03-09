@@ -14,7 +14,6 @@
       placeholder="Search"
     />
     <google-map
-      height="500px"
       width="100%"
       [zoom]="zoom"
       [center]="center"
@@ -31,7 +30,7 @@
       >
       </map-marker>
       <map-info-window >
-        {{infoContent}}
+        <div [innerHTML]="infoContent"></div>
       </map-info-window>
     </google-map>
 
